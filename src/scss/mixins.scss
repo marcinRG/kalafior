@@ -5,3 +5,11 @@
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
 }
+
+@mixin font-pt-sans {
+  font-family: "PT-Sans", sans-serif;
+}
+
+@mixin font-sagoe-ui {
+  font-family: "SegoeUI", sans-serif;
+}

@@ -1,10 +1,20 @@
+@import "variables";
+@import "./utils/fonts";
+@import "mixins";
+
+@include custom-font-mixin-simplified("PT-Sans", "PTSans-Regular", $path-pt-sans);
+@include custom-font-mixin("SegoeUI", "SegoeUI", 400, normal, $path-segoe-ui);
+@include custom-font-mixin("SegoeUI", "SegoeUI-Bold", 700, normal, $path-segoe-ui);
+
+
+
 *,
 html,
 body {
+  @include font-sagoe-ui;
   padding: 0;
   margin: 0;
   border: 0;
-  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
 
