@@ -14,11 +14,14 @@
     <div class="form-container">
         <label class="form-label">Długość hasła</label>
         <input class="form-input size" type="number" min="5" max="40" value="10"/>
+        <p class="form-input error">
+            Błąd! Nieprawidłowa wartość podaj liczbę z przedziału od 5 do 40
+        </p>
 
         <label class="form-label">Użyj następujących znaków</label>
 
         <div class="form-row">
-            <input type="checkbox" id="bigLetters"/>
+            <input type="checkbox" id="bigLetters" value="false"/>
             <label for="bigLetters" class="checkbox-label">duże litery ABCD...</label>
             <input type="checkbox" id="smallLetters"/>
             <label for="smallLetters" class="checkbox-label">małe litery abcd...</label>
@@ -49,15 +52,15 @@
         </div>
 
         <div class="form-row">
-            <button class="form-btn">Generuj hasło</button>
+            <button class="form-btn password">Generuj hasło</button>
         </div>
 
         <div class="form-row">
-            <input type="text" value="" class="form-input" />
+            <input type="text" value="" class="form-input"/>
         </div>
 
         <div class="form-row">
-            <button class="form-btn">Skopiuj hasło do schowka</button>
+            <button class="form-btn copy-to-clipboard">Skopiuj hasło do schowka</button>
         </div>
 
     </div>
