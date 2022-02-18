@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Key generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap" rel="stylesheet">
+</head>
+<body class="app-body">
+<form class="generator-form">
+    <h2 class="form-title">Generator haseł</h2>
+    <div class="form-container">
+        <label class="form-label">Długość hasła</label>
+        <input class="form-input size" type="number" min="5" max="40" value="10"/>
+
+        <label class="form-label">Użyj następujących znaków</label>
+
+        <div class="form-row">
+            <input type="checkbox" id="bigLetters"/>
+            <label for="bigLetters" class="checkbox-label">duże litery ABCD...</label>
+            <input type="checkbox" id="smallLetters"/>
+            <label for="smallLetters" class="checkbox-label">małe litery abcd...</label>
+        </div>
+
+        <div class="form-row">
+            <input type="checkbox" id="digits"/>
+            <label for="digits" class="checkbox-label">cyfry 0123...</label>
+            <input type="checkbox" id="commasMath"/>
+            <label for="commasMath" class="checkbox-label">działania: +-,.</label>
+        </div>
+
+        <div class="form-row">
+            <input type="checkbox" id="special"/>
+            <label for="special" class="checkbox-label">inne: !@#$% ...</label>
+            <input type="checkbox" id="brackets"/>
+            <label for="brackets" class="checkbox-label">nawiasy: (){}[]<></label>
+        </div>
+
+        <div class="form-row">
+            <input type="checkbox" id="other"/>
+            <label for="other" class="checkbox-label">pozostałe: ~|`'" </label>
+        </div>
+
+        <div class="form-row">
+            <input type="checkbox" id="uniqe"/>
+            <label for="uniqe" class="checkbox-label">tylko unikatowe znaki</label>
+        </div>
+
+        <div class="form-row">
+            <button class="form-btn">Generuj hasło</button>
+        </div>
+
+        <div class="form-row">
+            <input type="text" value="" class="form-input" />
+        </div>
+
+        <div class="form-row">
+            <button class="form-btn">Skopiuj hasło do schowka</button>
+        </div>
+
+    </div>
+</form>
+
+</body>
+</html>
