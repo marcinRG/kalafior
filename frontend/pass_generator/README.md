@@ -1,4 +1,4 @@
-# MiscJS
+# Pass Generator - frontend
 
 
 Commands: 

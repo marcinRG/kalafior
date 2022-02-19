@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>Key generator</title>
+    <title>password generator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,54 +14,65 @@
     <div class="form-container">
         <label class="form-label">Długość hasła</label>
         <input class="form-input size" type="number" min="5" max="40" value="10"/>
-        <p class="form-input error">
-            Błąd! Nieprawidłowa wartość podaj liczbę z przedziału od 5 do 40
+        <p class="form-input error length hide">
+            Błąd! Nieprawidłowa wartość. Podaj liczbę całkowitą od 5 do 40
         </p>
 
         <label class="form-label">Użyj następujących znaków</label>
 
         <div class="form-row">
-            <input type="checkbox" id="bigLetters" value="false"/>
-            <label for="bigLetters" class="checkbox-label">duże litery ABCD...</label>
-            <input type="checkbox" id="smallLetters"/>
-            <label for="smallLetters" class="checkbox-label">małe litery abcd...</label>
+            <input type="checkbox" id="big" class="strings"/>
+            <label for="big" class="checkbox-label">duże litery: ABCD...</label>
+            <input type="checkbox" id="small" class="strings"/>
+            <label for="small" class="checkbox-label">małe litery: abcd...</label>
         </div>
 
         <div class="form-row">
-            <input type="checkbox" id="digits"/>
-            <label for="digits" class="checkbox-label">cyfry 0123...</label>
-            <input type="checkbox" id="commasMath"/>
-            <label for="commasMath" class="checkbox-label">działania: +-,.</label>
+            <input type="checkbox" id="numbers" class="strings"/>
+            <label for="numbers" class="checkbox-label">cyfry: 0123456789</label>
+            <input type="checkbox" id="commas" class="strings"/>
+            <label for="commas" class="checkbox-label">znaki przestankowe: ,.:;</label>
         </div>
 
         <div class="form-row">
-            <input type="checkbox" id="special"/>
-            <label for="special" class="checkbox-label">inne: !@#$% ...</label>
-            <input type="checkbox" id="brackets"/>
+            <input type="checkbox" id="brackets" class="strings"/>
             <label for="brackets" class="checkbox-label">nawiasy: (){}[]<></label>
+            <input type="checkbox" id="other" class="strings"/>
+            <label for="other" class="checkbox-label">pozostałe: !@#$%^&*-+*~`/ </label>
         </div>
 
-        <div class="form-row">
-            <input type="checkbox" id="other"/>
-            <label for="other" class="checkbox-label">pozostałe: ~|`'" </label>
-        </div>
+        <p class="form-input error no-dataset hide">
+            Błąd! Musisz zaznaczyć przynajmniej jedną z powyższych kolekcji znaków.
+        </p>
+
 
         <div class="form-row">
-            <input type="checkbox" id="uniqe"/>
-            <label for="uniqe" class="checkbox-label">tylko unikatowe znaki</label>
+            <input type="checkbox" id="unique" class="unique"/>
+            <label for="unique" class="checkbox-label">tylko unikatowe znaki</label>
         </div>
+
+        <p class="form-input error unique hide">
+            Błąd! Dla tej opcji długość hasła musi być mniejsza lub równa ilości znaków w wybranych kolekcjach
+        </p>
 
         <div class="form-row">
             <button class="form-btn password">Generuj hasło</button>
         </div>
 
-        <div class="form-row">
-            <input type="text" value="" class="form-input"/>
+        <div class="div password ok hide">
+
+            <div class="form-row">
+                <input type="text" value="" class="form-input password" readonly/>
+            </div>
+
+            <div class="form-row">
+                <button class="form-btn copy-to-clipboard">Skopiuj hasło do schowka</button>
+            </div>
         </div>
 
-        <div class="form-row">
-            <button class="form-btn copy-to-clipboard">Skopiuj hasło do schowka</button>
+        <div class="div password error hide">
         </div>
+
 
     </div>
 </form>
