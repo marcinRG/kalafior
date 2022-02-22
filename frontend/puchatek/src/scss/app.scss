@@ -1,11 +1,11 @@
 @import "./common";
 @import "./variables";
 
-.screen {
-  width: 100%;
+.title {
   height: 100vh;
-  position: relative;
   overflow: hidden;
+  width: 100%;
+  position: relative;
 }
 
 .hide {
@@ -53,7 +53,6 @@
     @media (min-height: 900px) {
       height: 350px;
     }
-
   }
 
 }
@@ -69,6 +68,7 @@
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .btn {
@@ -76,13 +76,75 @@
   font-size: 25px;
   font-family: "Italianno", cursive;
   color: #562506;
-  padding: 10px 30px;
+  padding: 10px;
   border: 1px dashed #562506;
   cursor: pointer;
+  vertical-align: center;
+  line-height: 40px;
+
+  @media screen {
+
+    @media (min-width: 700px) {
+      padding: 10px 30px;
+    }
+  }
+
+  span {
+
+    display: none;
+
+    @media screen {
+
+      @media (min-width: 1280px) {
+        display: inline;
+      }
+    }
+
+  }
+
 
   &.error {
     display: block;
     margin: 20px auto;
+  }
+
+  &.previous {
+
+    i {
+
+      &::before {
+        font-style: normal;
+        font-size: 15px;
+        content: "<<";
+        padding: 0 6px;
+      }
+    }
+  }
+
+  &.next {
+
+    i {
+
+      &::after {
+        font-style: normal;
+        font-size: 15px;
+        content: ">>";
+        padding: 0 6px;
+      }
+    }
+  }
+
+  &.random {
+
+    i {
+
+      &::before {
+        font-style: normal;
+        font-size: 20px;
+        content: "\2684";
+        padding: 0 6px;
+      }
+    }
   }
 
 }
@@ -94,19 +156,84 @@
 }
 
 .book-display {
+  position: relative;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
+}
+
+.slides {
+  position: absolute;
+  height: 100vh;
+  width: 200%;
+  left: 0;
+  top: 0;
 }
 
 .book-p {
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   font-family: "Italianno", cursive;
   color: #562506;
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  @media screen {
+
+    @media (min-width: 1280px) {
+      font-size: 30px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+
+    }
+  }
+
 }
 
 .book-paragraphs {
-  padding: 60px 20px;
-  margin: 10% auto;
-  width: 60%
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
 }
+
+.paragraphs {
+  width: 100%;
+  margin: 0 auto;
+
+  @media screen {
+
+    @media (min-width: 1280px) {
+      padding: 50px;
+      width: 50%;
+    }
+  }
+
+}
+
+.book-img {
+  display: block;
+  width: 50px;
+  height: auto;
+  margin: 100px auto 0;
+
+  @media screen {
+
+    @media (min-width: 1280px) {
+      width: 150px;
+    }
+  }
+
+
+}
+
+.book-random {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+}
+
+

@@ -6,7 +6,7 @@ const AutoPrefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const outputPath = './dist/static/home_page';
+const outputPath = './dist/static/puchatek';
 const srcPath = './src/';
 
 module.exports = merge(common, {

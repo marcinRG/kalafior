@@ -13,5 +13,9 @@ export const Settings = {
         LOADING: 'loading',
         WORKING: 'working',
         ERROR: 'error'
+    },
+    appSetting: {
+        serverPath: '/kubus_puchatek/data',
+        lines: 5
     }
 }

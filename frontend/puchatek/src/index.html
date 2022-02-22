@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>Key generator</title>
+    <title>Kubuś puchatek</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,16 +26,33 @@
 </div>
 <div class="screen book-display" style="display: none">
     <div class="buttons">
-        <button class="btn previous">Poprzedni fragment</button>
-        <button class="btn next">Następny fragment</button>
-        <button class="btn random">Losowy fragment</button>
+        <button class="btn previous page"><i></i><span>Poprzedni fragment</span></button>
+        <button class="btn next page"><i></i><span>Następny fragment</span></button>
+        <button class="btn previous book hide"><i></i><span>Powrót</span></button>
+        <button class="btn random"><i></i><span>Losowy fragment</span></button>
     </div>
-    <div class="book-paragraphs">
-        <p class="book-p"></p>
-        <p class="book-p"></p>
-        <p class="book-p"></p>
-        <p class="book-p"></p>
+    <div class="slides">
+        <div class="book-paragraphs">
+            <img class="book-img" src="images/puchatek.png" alt="puchatek"/>
+            <div class="paragraphs">
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+            </div>
+        </div>
+
+        <div class="book-random">
+            <img src="images/prosiak_2.png" alt="prosiak" class="book-img">
+            <div class="paragraphs">
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+            </div>
+        </div>
     </div>
+
     <button class="btn title-btn navigation up">Do góry &lt;&lt;</button>
 </div>
 <div class="screen error" style="display: none">

@@ -11,13 +11,11 @@ export class ScrollButtons {
         this.buttonDown.addEventListener('click', (event) => {
             event.preventDefault();
             scrollTo(this.displayScreen, 1000, 'easeOut');
-            console.log('ciśniete w dół')
         });
 
         this.buttonUp.addEventListener('click', (event) => {
             event.preventDefault();
             scrollTo(this.titleScreen, 1000, 'easeOut');
-            console.log('ciśnięte w górę');
         });
 
     }
