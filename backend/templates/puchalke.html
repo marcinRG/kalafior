@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Kubuś puchatek</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Italianno&display=swap"
+          rel="stylesheet">
+<link href="static/puchatek/style.css" rel="stylesheet"></head>
+<body style="width: 100%; height: 100vh">
+<div class="screen loading" style="display: none">
+    <h1 class="book-title">
+        Ładowanie ...
+    </h1>
+    <img class="useful-images" src="static/puchatek/images/prosiak-loading.png" alt="app is loading..."/>
+</div>
+<div class="screen title" style="display: none">
+    <h1 class="book-title">
+        <span class="title">Kubuś puchatek</span>
+        <span class="book-author">A.A Milne</span>
+    </h1>
+    <img class="useful-images" src="static/puchatek/images/mis_2.png" alt="Kubuś puchatek"/>
+    <button class="btn title-btn navigation down">Dalej &gt;&gt;</button>
+</div>
+<div class="screen book-display" style="display: none">
+    <div class="buttons">
+        <button class="btn previous page"><i></i><span>Poprzedni fragment</span></button>
+        <button class="btn next page"><i></i><span>Następny fragment</span></button>
+        <button class="btn previous book hide"><i></i><span>Powrót</span></button>
+        <button class="btn random"><i></i><span>Losowy fragment</span></button>
+    </div>
+    <div class="slides">
+        <div class="book-paragraphs">
+            <img class="book-img" src="static/puchatek/images/puchatek.png" alt="puchatek"/>
+            <div class="paragraphs">
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+            </div>
+        </div>
+
+        <div class="book-random">
+            <img src="static/puchatek/images/prosiak_2.png" alt="prosiak" class="book-img">
+            <div class="paragraphs">
+                <p class="book-p"></p>
+                <p class="book-p"></p>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn title-btn navigation up">Do góry &lt;&lt;</button>
+</div>
+<div class="screen error" style="display: none">
+    <h1 class="book-title">
+        Wystąpił błąd ...
+    </h1>
+    <img class="useful-images" src="static/puchatek/images/puchatek-error.png" alt="error in application..."/>
+    <button class="btn error">Przeładuj aplikację</button>
+</div>
+<script type="text/javascript" src="static/puchatek/app.bundle.js"></script></body>
+</html>
