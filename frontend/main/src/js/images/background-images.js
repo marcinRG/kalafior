@@ -1,6 +1,5 @@
 export const loadImages = (imageLinks, loadMessage) => {
 
-    console.log(imageLinks);
     let images = [];
     let loadedImages = 0;
     return new Promise((resolve) => {
