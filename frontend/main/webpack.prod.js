@@ -1,74 +1,62 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const AutoPrefixer = require('autoprefixer');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const outputPath = './dist/static/home_page';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
+const {merge} = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+
 const srcPath = './src/';
+const outPath = './dist/';
+const staticPath = './static/main/';
 
 module.exports = merge(common, {
     mode: 'production',
     output: {
-        path: path.join(__dirname, outputPath),
-        filename: '[name].bundle.js'
-    },
-    devServer: {
-        contentBase: path.join(__dirname, outputPath),
-        compress: true,
-        hot: false,
-        port: 8080
+        clean: true,
+        path: path.join(__dirname, path.join(outPath, staticPath)),
+        filename: '[name].[fullhash].js',
+        assetModuleFilename: 'assets/[name]_[hash][ext]'
     },
     optimization: {
-        minimizer: [
-            new OptimizeCssAssetsPlugin(),
-            new TerserPlugin()
-        ]
+        minimize: true
     },
     module: {
         rules: [
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'fonts/[name].[ext]',
-                        },
-                    }
-                ]
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'images/[name].[ext]',
-                            limit: 10 * 1024
-                        },
-                    }
-                ]
+                use: [{loader: 'babel-loader'}]
             },
             {
                 test: /\.scss$/,
-                use: [{ loader: MiniCssExtractPlugin.loader },
-                    { loader: 'css-loader' }, {
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [AutoPrefixer()]
-                        }
-                    }, { loader: 'sass-loader' }]
-            },
-        ],
+                    },
+                    {
+                        loader: 'sass-loader',
+                    }]
+            }
+        ]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            title: 'My App',
+            filename: './../../index.html',
+            template: path.join(__dirname, srcPath + 'index.html'),
+            minify: false
+        }),
         new MiniCssExtractPlugin({
-            path: path.join(__dirname, outputPath),
             filename: 'style.css'
-        })
-    ]
+        }),
+        new WebpackManifestPlugin({})
+    ],
 });

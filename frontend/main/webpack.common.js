@@ -1,7 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SassLintPlugin = require('sass-lint-webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 let cleanOptions = {
     root: path.join(__dirname, ''),
@@ -10,7 +8,6 @@ let cleanOptions = {
 };
 
 const srcPath = './src/';
-
 module.exports = {
     entry: {
         app: path.join(__dirname, srcPath + 'app.js')
@@ -18,26 +15,38 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [{ loader: 'babel-loader' }, { loader: 'eslint-loader' }]
-            },
-            {
-                test: /\.html$/,
-                exclude: /node_modules/,
+                test: /\.html$/i,
                 loader: 'html-loader',
                 options: {
-                    attrs: ['img:src','link:href','image:xlink:href']
+                    minimize: false,
+                    sources: {
+                        list: [
+                            {
+                                tag: 'img',
+                                attribute: 'src',
+                                type: 'src',
+                            },
+                            {
+                                tag: 'image',
+                                attribute: 'xlink:href',
+                                type: 'src',
+                            },
+                        ]}
                 }
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                exclude: /node_modules/,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                exclude: /node_modules/,
+                type: 'asset/resource',
+            },
         ]
     },
     plugins: [
         new CleanWebpackPlugin(cleanOptions),
-        new SassLintPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'My App',
-            template: path.join(__dirname, srcPath + 'index.html')
-        })
-    ],
-};
+    ]
+}

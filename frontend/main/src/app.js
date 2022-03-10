@@ -1,7 +1,4 @@
 import './scss/app.scss';
-import Velocity from 'velocity-animate';
-import {scrollTo} from './js/utils/Animations.utils';
-import {getIndexes} from './js/utils/GetIndexes';
 import {Settings} from './js/settings';
 import {Menu} from './js/menu/Menu';
 import {MainSlider} from './js/main-slider/MainSlider';

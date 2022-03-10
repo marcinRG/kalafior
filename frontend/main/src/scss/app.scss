@@ -182,6 +182,7 @@
     opacity: 0;
     top: -100px;
   }
+
   100% {
     opacity: 1;
     top: 29px;
@@ -316,7 +317,7 @@
     padding: 20px;
     line-height: 200%;
     text-align: justify;
-    background-color: rgba(9, 14, 9, 0.4);
+    background-color: rgba(9, 14, 9, .4);
     //background-color: rgba(250, 122, 122, .63);
   }
 
