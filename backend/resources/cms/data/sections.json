@@ -1,0 +1,47 @@
+[
+  {
+    "id": "title",
+    "short_name": "kalafior.site",
+    "long_name": "",
+    "show_on_slide": true,
+    "show_on_menu": false,
+    "create_section": false,
+    "description": "witaj na mojej stronie"
+  },
+  {
+    "id": "python",
+    "short_name": "Python",
+    "long_name": "python projekty",
+    "show_on_slide": true,
+    "show_on_menu": true,
+    "create_section": true,
+    "description": "zrealizowane prze mnie projekty pytonowe"
+  },
+  {
+    "id": "games",
+    "short_name": "Gry",
+    "long_name": "gry projekty",
+    "show_on_slide": true,
+    "show_on_menu": true,
+    "create_section": true,
+    "description": "Różne gierki i tak dalej"
+  },
+  {
+    "id": "other",
+    "short_name": "Inne",
+    "long_name": "Inne informacje",
+    "show_on_slide": true,
+    "show_on_menu": true,
+    "create_section": true,
+    "description": "Inne informacje"
+  },
+  {
+    "id": "about",
+    "short_name": "O mnie",
+    "long_name": "O autorze strony",
+    "show_on_slide": true,
+    "show_on_menu": true,
+    "create_section": true,
+    "description": "Różne informacje o autorze strony"
+  }
+]

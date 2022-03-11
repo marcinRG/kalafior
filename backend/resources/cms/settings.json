@@ -1,0 +1,10 @@
+{
+  "path_data": "./resources/cms/data/",
+  "data_files": {
+    "games": "games.json",
+    "python_projects": "python_projects.json",
+    "sections": "sections.json"
+  },
+  "images_data": "./static/images/",
+  "html_fragments": "./static/fragments/"
+}

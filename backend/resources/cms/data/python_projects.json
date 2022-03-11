@@ -1,0 +1,12 @@
+[
+  {
+    "name": "genrator haseł",
+    "description": "Opis projektu",
+    "image": "img_path",
+    "tags": [
+      "python",
+      "flask",
+      "javascript"
+    ]
+  }
+]
