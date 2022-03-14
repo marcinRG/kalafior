@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>kalafior.site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <script defer src="static/admin/app.ec529e5777b872c92043.js"></script>
+    <link href="static/admin/style.css" rel="stylesheet">
+</head>
+<body class="app-body">
+<main class="app-main">
+
+    <!--    {# if logged_in and login #}-->
+
+    <div class="small-bar">
+        <div class="info name"><span>{{ login }}</span></div>
+        <div class="info logout"><a href="{{url_for('admin',logout='ok')}}">wyloguj</a></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="img-wrapper">
+            <img class="logo" src="static/admin/assets/logo_5f1067b0cf21e381dcb8.jpg" alt="logo">
+        </div>
+        <ul class="app-menu">
+
+            {% for section in sections: %}
+            <li class="menu-item"><a href="/admin/{{section['id']}}" class="link">{{ section['title'] }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </nav>
+
+    <!--    {# else #}-->
+
+    <div class="form-container">
+        <form action="/admin" method="post" class="app-form login">
+            <p class="form-title">Logowanie</p>
+            <div class="form-inside-container">
+                <input type="hidden" value="login_form" id="login_form" name="form_type" style="display: none">
+                <label for="login" class="form-label">Login:</label>
+                <input type="text" id="login" name="login" value="" class="form-input">
+                <label for="password" class="form-label">Hasło:</label>
+                <input type="password" id="password" name="password" value="" class="form-input">
+                <div class="button-wrapper">
+                    <input type="submit" value="zaloguj" class="button white">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!--    {# endif #}-->
+
+</main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "path_data": "./resources/cms/data/",
+  "resources": [
+    {
+      "id": "sections",
+      "type": "file",
+      "resource_name": "sections.json",
+      "title": "sekcje strony głównej"
+    },
+    {
+      "id": "python",
+      "type": "file",
+      "resource_name": "python_projects.json",
+      "title": "python-projekty"
+    },
+    {
+      "id": "games",
+      "type": "file",
+      "resource_name": "games.json",
+      "title": "gry-projekty"
+    },
+    {
+      "id": "html_parts",
+      "type": "directory",
+      "resource_name": "html_parts",
+      "title": "fragmenty html"
+    }
+  ]
+}
+
