@@ -37,29 +37,42 @@ def favicon():
 
 @app.route("/admin", methods=['GET', 'POST', 'OPTIONS'])
 def admin():
-    print('page sections:')
-    print('------------------')
-    print(cms.get_page_sections())
-    print('------------------')
-    print('------------------')
+    section = {
+        "id": "new_section",
+        "short_name": "eło eło",
+        "long_name": "Cośtam cośtam ele elo",
+        "show_on_slide": True,
+        "show_on_menu": True,
+        "createSection": True,
+        "description": "informacje o autorze strony"
+    }
+    cms.add_page_section(section)
+    # cms.remove_page_section('new_section')
+    # cms.edit_page_section('about', section)
 
-    print('python:')
-    print('------------------')
-    print(cms.get_python_projects())
-    print('------------------')
-    print('------------------')
-
-    print('games:')
-    print('------------------')
-    print(cms.get_games_projects())
-    print('------------------')
-    print('------------------')
-
-    print('html:')
-    print('------------------')
-    print(cms.get_html_fragments())
-    print('------------------')
-    print('------------------')
+    # print('page sections:')
+    # print('------------------')
+    # cms.get_page_sections()
+    # print('------------------')
+    # print('------------------')
+    #
+    # print('python:')
+    # print('------------------')
+    # print(cms.get_python_projects())
+    # print('------------------')
+    # print('------------------')
+    #
+    # print('games:')
+    # print('------------------')
+    # print(cms.get_games_projects())
+    # print('------------------')
+    # print('------------------')
+    #
+    # print('html:')
+    # print('------------------')
+    # print(cms.get_html_fragments())
+    # print('------------------')
+    # print('------------------')
 
     return render_template("admin.html", sections=cms.get_section_names())
 

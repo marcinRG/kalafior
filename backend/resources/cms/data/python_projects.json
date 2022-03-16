@@ -1,5 +1,6 @@
 [
   {
+    "id": "pass_generator",
     "name": "genrator haseł",
     "description": "Opis projektu",
     "image": "img_path",

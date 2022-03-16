@@ -1,6 +1,6 @@
 import os
 
-from utils.write_dictionary_to_file import write_data_to_file
+from utils.write_data_to_file import write_data_to_file
 
 
 def initialize_json(path_to_file):

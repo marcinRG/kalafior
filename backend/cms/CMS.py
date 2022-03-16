@@ -1,6 +1,8 @@
 import os
 
+from utils.find_index_in_dict_list import find_index_in_dict_list
 from utils.read_data_from_file import read_data_from_file
+from utils.write_data_to_file import write_data_to_file
 
 
 class CMS:
@@ -20,7 +22,40 @@ class CMS:
 
     def get_section_names(self):
         list_res = self.__get_settings()['resources']
-        return list(map(lambda x: {'title': x['title'], 'id': x['id']}, list_res))
+        return [{'title': element['title'], 'id': element['id']} for element in list_res]
+
+    def __write_new_values_to_file(self, resource_id, data):
+        settings = [element for element in self.__get_settings()['resources'] if element['id'] == resource_id][0]
+        file = self.__get_resource_file(settings)
+        write_data_to_file(file, data)
+
+    def __add_new_element(self, collection_id, new_element):
+        collection = self.__get_data_collection(collection_id)
+        collection.append(new_element)
+        self.__write_new_values_to_file(collection_id, collection)
+
+    def __edit_element(self, collection_id, id_element, new_value):
+        collection = self.__get_data_collection(collection_id)
+        index = find_index_in_dict_list('id', id_element, collection)
+        if index >= 0:
+            collection[index] = new_value
+            self.__write_new_values_to_file(collection_id, collection)
+
+    def __remove_element(self, collection_id, id_element):
+        collection = self.__get_data_collection(collection_id)
+        index = find_index_in_dict_list('id', id_element, collection)
+        if index >= 0:
+            collection.pop(index)
+            self.__write_new_values_to_file('sections', collection)
+
+    def add_page_section(self, new_section):
+        self.__add_new_element('sections', new_section)
+
+    def edit_page_section(self, id_section, new_value):
+        self.__edit_element('sections', id_section, new_value)
+
+    def remove_page_section(self, id_section):
+        self.__remove_element('sections', id_section)
 
     def get_page_sections(self):
         return self.__get_data_collection('sections')
@@ -34,11 +69,14 @@ class CMS:
     def get_html_fragments(self):
         return self.__get_data_collection('html_parts')
 
+    def __get_resource_file(self, settings):
+        path_to_resources = self.__get_settings()['path_data']
+        return os.path.join(os.path.join(self.main_dir, path_to_resources), settings['resource_name'])
+
     def __get_data_collection(self, id_collection):
         data = None
-        path_to_resources = self.__get_settings()['path_data']
         settings = list(filter(lambda v: v['id'] == id_collection, self.__get_settings()['resources']))[0]
-        file = os.path.join(os.path.join(self.main_dir, path_to_resources), settings['resource_name'])
+        file = self.__get_resource_file(settings)
 
         if settings['type'] == 'file':
             data = read_data_from_file(file)
