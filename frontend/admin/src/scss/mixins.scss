@@ -1,0 +1,14 @@
+@mixin font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+@mixin button-form {
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 25px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
