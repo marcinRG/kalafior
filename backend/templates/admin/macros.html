@@ -1,0 +1,29 @@
+{% macro row_value(id, value) -%}
+
+<div class="row">
+    <label class="elem-label">{{id}}</label>
+    <span class="elem-value">
+         {% if value is boolean %}
+            {% if value is true %}
+              🗹
+            {% elif value is false %}
+              ☐
+            {% endif %}
+        {% endif %}
+
+        {% if value is sequence and not value is string %}
+          {% for v in value: %}
+              &nbsp;{{ v }}
+              {%- if not loop.last -%},{% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if value is string %}
+           {{value}}
+        {% endif %}
+    </span>
+</div>
+
+
+
+{%- endmacro %}

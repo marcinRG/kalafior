@@ -2,8 +2,6 @@ import os
 from flask import Flask, render_template, request, send_from_directory, jsonify, redirect, url_for, g, session
 
 from cms.CMS import CMS
-from cms.load_cms_lists import load_cms_lists
-from cms.login_admin import login_admin
 from utils.crossdomain import crossdomain
 from utils.generate_password import generate_password
 from utils.import_text_to_list import import_text_to_list
@@ -12,8 +10,82 @@ from cms.cms_settings_file import cms_admin
 
 app = Flask(__name__)
 app.secret_key = 'NFcT&jCOn#ekRB~qyh9gSAso*l2+pXYUwDHt!PI5'
-
 cms = CMS(os.getcwd(), cms_admin, cms_settings_file_new)
+
+pages_address = {
+    'sections': '/admin/sections.html',
+    'python': '/admin/python.html',
+    'games': '/admin/games.html',
+    'html_parts': 'admin/html_parts.html'
+}
+
+
+def login_user(user_data):
+    is_logged_in = cms.login(user_data)
+    if is_logged_in.get('logged') is True:
+        session['login'] = is_logged_in.get('user')
+        session['logged_in'] = is_logged_in.get('logged')
+
+
+def is_user_logged_in():
+    return session.get('logged_in') is True and session.get('login') == cms.get_user_name()
+
+
+def get_session_data():
+    if is_user_logged_in():
+        return {
+            'login': session.get('login'),
+            'logged_in': session.get('logged_in')
+        }
+    return None
+
+
+def log_out():
+    session.pop('login')
+    session.pop('logged_in')
+
+
+def get_page_address(page):
+    page_adr = '/admin/sections.html'
+    selected_page = pages_address.get(page)
+    if selected_page:
+        page_adr = selected_page
+    return page_adr
+
+
+def get_list_content(page):
+    page_content = []
+    pages = {
+        'sections': {
+            'content': cms.get_page_sections(),
+        },
+        'python': {
+            'content': cms.get_python_projects(),
+        },
+        'games': {
+            'content': cms.get_games_projects(),
+        },
+        'html_parts': {
+            'content': cms.get_html_fragments(),
+        }
+    }
+    selected_page = pages.get(page)
+    if selected_page:
+        page_content = selected_page['content']
+    return page_content
+
+
+def get_content_edit_element(page, id_element):
+    data = {}
+    if page == 'sections':
+        data = cms.get_page_section(id_element)
+    if page == 'python':
+        data = cms.get_python_project(id_element)
+    if page == 'games':
+        data = cms.get_game_project(id_element)
+    if page == 'html_parts':
+        data = cms.get_html_fragment(id_element)
+    return data
 
 
 @app.route('/favicon.ico')
@@ -22,70 +94,49 @@ def favicon():
                                'images/favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
-#
-#
-# @app.route("/", methods=['GET', 'POST', 'OPTIONS'])
-# def main():
-#     page_data = load_cms_lists(cms_settings_file)
-#     sections = page_data.get('sections')
-#     print(page_data)
-#     menu_items = list(filter(lambda x: x.get('show_on_menu'), sections))
-#     sub_pages = list(filter(lambda x: x.get('create_section'), sections))
-#     html_elem = '<div><p>content</p><p>Something else</p></div>'
-#     return render_template("index.html", menu_items=menu_items, sub_pages=sub_pages, elem_active=html_elem)
+@app.route('/login', methods=['GET', 'POST', 'OPTIONS'])
+def login():
+    post_data = request.form.to_dict()
+    if post_data.get('form_type') == 'login_form':
+        login_user(post_data)
+        if is_user_logged_in():
+            return redirect('admin/sections')
+        else:
+            return redirect('login')
+    return render_template("admin/login.html")
 
 
-@app.route("/admin", methods=['GET', 'POST', 'OPTIONS'])
-def admin():
-    section = {
-        "id": "new_section",
-        "short_name": "eło eło",
-        "long_name": "Cośtam cośtam ele elo",
-        "show_on_slide": True,
-        "show_on_menu": True,
-        "createSection": True,
-        "description": "informacje o autorze strony"
-    }
-    cms.add_page_section(section)
-    # cms.remove_page_section('new_section')
-    # cms.edit_page_section('about', section)
+@app.route("/admin/<page>", methods=['GET', 'POST', 'OPTIONS'])
+def admin(page):
+    print(request.form.to_dict())
 
-    # print('page sections:')
-    # print('------------------')
-    # cms.get_page_sections()
-    # print('------------------')
-    # print('------------------')
-    #
-    # print('python:')
-    # print('------------------')
-    # print(cms.get_python_projects())
-    # print('------------------')
-    # print('------------------')
-    #
-    # print('games:')
-    # print('------------------')
-    # print(cms.get_games_projects())
-    # print('------------------')
-    # print('------------------')
-    #
-    # print('html:')
-    # print('------------------')
-    # print(cms.get_html_fragments())
-    # print('------------------')
-    # print('------------------')
+    if is_user_logged_in():
+        mode = 'list'
+        data = []
+        request_args = request.args.to_dict()
+        if request_args.get('logout') == 'ok':
+            log_out()
+            return redirect('/login')
 
-    return render_template("admin.html", sections=cms.get_section_names())
+        if request_args.get('mode'):
+            mode = request_args.get('mode')
 
+        if mode == 'list':
+            data = get_list_content(page)
 
-# @app.route("/data/slider_items")
-# @crossdomain(origin='*')
-# def slider_items():
-#     page_data = load_cms_lists(cms_settings_file)
-#     sections = page_data.get('sections')
-#     items = list(filter(lambda x: x.get('show_on_slide'), sections))
-#     return jsonify(items)
-#
-#
+        if mode == 'edit':
+            id_elem = request_args.get('id_elem')
+            data = get_content_edit_element(page, id_elem)
+
+        if mode == 'new':
+            data = {}
+
+        print(get_page_address(page))
+        return render_template(get_page_address(page), page_content=data,
+                               sections=cms.get_section_names(), page=page, user_data=get_session_data(), mode=mode)
+    else:
+        return redirect('/login')
+
 
 @app.route("/kubus_puchatek")
 def puchatek():

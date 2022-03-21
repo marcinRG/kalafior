@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+
+{% block page_title %}
+<h2 class="section-title">
+    <span class="title">Fragmenty HTML</span>
+    <span class="subtitle">Lista fragmentów html do wykorzystania na podstronach strony głównej</span>
+</h2>
+<div class="btn-wrapper">
+    <a href="{{url_for('admin',page=page, mode='new')}}" class="button green">+ Dodaj nowy fragment</a>
+</div>
+
+{% endblock %}
+
+
+{%block list %}
+
+{% if page_content and page_content|length >0 %}
+
+{% for content in page_content: %}
+
+<div class="list-element">
+    <div class="element-content">
+        <div>
+            <div>
+                {% for id,value in content.items(): %}
+                <div class="row">
+                    <label class="elem-label">{{id}}</label><span class="elem-value">{{value}}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="element-btn-wrapper">
+        <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+           class="button white">Edytuj</a>
+        <button class="button">Usuń</button>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block edit_from %}
+<div class="form-container">
+    <form action="/admin/python" method="post" class="app-form login">
+        <p class="form-title">Edycja/dodawanie nowego fragmentu HTML</p>
+        <div class="form-inside-container">
+
+            <input type="hidden" value="html_parts_form" id="html_parts_form" name="form_type" style="display: none">
+            <label for="id" class="form-label">Id:</label>
+            <input type="text" id="id" name="id" value="" class="form-input">
+
+            <label for="description" class="form-label">Opis:</label>
+            <input type="text" id="description" name="description" value="" class="form-input">
+
+
+            <label for="content" class="form-label">HTML:</label>
+            <textarea id="content" name="content" class="form-input" rows="10"></textarea>
+
+            <div class="button-wrapper">
+                <input type="submit" value="Zapisz" class="button white">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

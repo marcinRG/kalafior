@@ -1,5 +1,7 @@
 {
   "path_data": "./resources/cms/data/",
+  "images_data": "./static/admin/images/",
+  "html_fragments": "./resources/cms/data/html_parts/",
   "resources": [
     {
       "id": "sections",
@@ -21,8 +23,8 @@
     },
     {
       "id": "html_parts",
-      "type": "directory",
-      "resource_name": "html_parts",
+      "type": "file",
+      "resource_name": "html_parts.json",
       "title": "fragmenty html"
     }
   ]

@@ -1,0 +1,72 @@
+{% extends "admin/base.html" %}
+{% import 'admin/macros.html' as macros %}
+
+{% block page_title %}
+<h2 class="section-title">
+    <span class="title">Python projekty</span>
+    <span class="subtitle">lista projektów pythonowych</span>
+</h2>
+<div class="btn-wrapper">
+    <a href="{{url_for('admin',page=page, mode='new')}}" class="button green">+ Dodaj nowy projekt</a>
+</div>
+
+{% endblock %}
+
+
+{%block list %}
+
+{% if page_content and page_content|length >0 %}
+
+{% for content in page_content: %}
+
+<div class="list-element">
+    <div class="element-content">
+        <div>
+            <div>
+                {% for id,value in content.items(): %}
+                {{macros.row_value(id,value)}}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="element-btn-wrapper">
+        <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+           class="button white">Edytuj</a>
+        <button class="button">Usuń</button>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block edit_from %}
+<div class="form-container">
+    <form action="/admin/python" method="post" class="app-form login">
+        <p class="form-title">Edycja/dodawanie nowego projektu python</p>
+        <div class="form-inside-container">
+
+            <input type="hidden" value="python_form" id="python_form" name="form_type" style="display: none">
+            <label for="id" class="form-label">Id projektu:</label>
+            <input type="text" id="id" name="id" value="" class="form-input">
+
+            <label for="name" class="form-label">Nazwa:</label>
+            <input type="text" id="name" name="name" value="" class="form-input">
+
+            <label for="description" class="form-label">Opis projektu:</label>
+            <textarea id="description" name="description" class="form-input" rows="4"></textarea>
+
+            <label for="image" class="form-label">Obraz do projektu:</label>
+            <input type="text" id="image" name="image" value="" class="form-input">
+
+            <label for="tags" class="form-label">Tagi</label>
+            <input type="text" id="tags" name="tags" value="" class="form-input">
+
+            <div class="button-wrapper">
+                <input type="submit" value="Zapisz" class="button white">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

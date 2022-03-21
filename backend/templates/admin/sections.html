@@ -1,0 +1,75 @@
+{% extends "admin/base.html" %}
+{% import 'admin/macros.html' as macros %}
+
+{% block page_title %}
+<h2 class="section-title">
+    <span class="title">Sekcje strony głównej</span>
+    <span class="subtitle">lista sekcji strony głównej</span>
+</h2>
+<div class="btn-wrapper">
+    <a href="{{url_for('admin',page=page, mode='new')}}" class="button green">+ Dodaj nową sekcję</a>
+</div>
+
+{% endblock %}
+
+{%block list %}
+
+{% if page_content and page_content|length >0 %}
+
+{% for content in page_content: %}
+
+<div class="list-element">
+    <div class="element-content">
+        <div>
+            <div>
+                {% for id,value in content.items(): %}
+                {{macros.row_value(id,value)}}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="element-btn-wrapper">
+        <a href="{{url_for('admin',page=page, mode='edit', id_elem=content['id'])}}"
+           class="button white">Edytuj</a>
+        <button class="button">Usuń</button>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block edit_from %}
+<div class="form-container">
+    <form action="/admin/sections" method="post" class="app-form login">
+        <p class="form-title">Edycja/dodawanie nowej sekcji</p>
+        <div class="form-inside-container">
+
+            <input type="hidden" value="sections_form" id="sections_form" name="form_type" style="display: none">
+            <label for="id" class="form-label">Id sekcji:</label>
+            <input type="text" id="id" name="id" value="" class="form-input">
+
+            <label for="short_name" class="form-label">Skrócona nazwa:</label>
+            <input type="text" id="short_name" name="short_name" value="" class="form-input">
+
+            <label for="long_name" class="form-label">Pełna nazwa:</label>
+            <input type="text" id="long_name" name="long_name" value="" class="form-input">
+
+            <label for="show_on_slide" class="form-label">Pokazuj sekcję na sliderze</label>
+            <input type="checkbox" id="show_on_slide" name="show_on_slide" value="" class="form-input">
+
+            <label for="show_on_menu" class="form-label">Pokazuj sekcję na menu głównym</label>
+            <input type="checkbox" id="show_on_menu" name="show_on_menu" value="" class="form-input">
+
+            <label for="description" class="form-label">Opis sekcji</label>
+            <textarea id="description" name="description" rows=4 class="form-input"></textarea>
+
+            <div class="button-wrapper">
+                <input type="submit" value="Zapisz" class="button white">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
