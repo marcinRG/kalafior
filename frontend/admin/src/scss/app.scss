@@ -76,6 +76,12 @@
     color: black;
     border-bottom: 4px solid transparent;
 
+    &.selected {
+      font-weight: bold;
+      color: green;
+      border-bottom: 4px solid black;
+    }
+
     &:hover {
       border-bottom: 4px solid gold;
       color: green;
@@ -121,6 +127,19 @@
     color: white;
     font-size: 12px;
     padding: 15px 0 5px 0;
+  }
+
+  .checkbox-label {
+    color: white;
+    font-size: 12px;
+    padding: 0 5px;
+  }
+
+  .checkbox-wrapper {
+    width: 100%;
+    padding: 8px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    //margin-top: 15px;
   }
 
   .form-input {
@@ -241,6 +260,7 @@
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
+    outline: 0;
   }
 
 }

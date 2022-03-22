@@ -11,37 +11,6 @@
 
 {% endblock %}
 
-{%block list %}
-
-{% if page_content and page_content|length >0 %}
-
-{% for content in page_content: %}
-
-<div class="list-element">
-    <div class="element-content">
-        <div>
-            <div>
-                {% for id,value in content.items(): %}
-                <div class="row">
-                    <label class="elem-label">{{id}}</label><span class="elem-value">{{value}}</span>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="element-btn-wrapper">
-        <a href="{{url_for('admin',page=page, mode='edit', id_elem=content['id'])}}"
-           class="button white">Edytuj</a>
-        <button class="button">Usuń</button>
-    </div>
-</div>
-{% endfor %}
-
-{% endif %}
-
-{% endblock %}
-
-
 {% block edit_from %}
 <div class="form-container">
     <form action="/admin/python" method="post" class="app-form login">

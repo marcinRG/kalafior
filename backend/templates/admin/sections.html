@@ -12,34 +12,6 @@
 
 {% endblock %}
 
-{%block list %}
-
-{% if page_content and page_content|length >0 %}
-
-{% for content in page_content: %}
-
-<div class="list-element">
-    <div class="element-content">
-        <div>
-            <div>
-                {% for id,value in content.items(): %}
-                {{macros.row_value(id,value)}}
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="element-btn-wrapper">
-        <a href="{{url_for('admin',page=page, mode='edit', id_elem=content['id'])}}"
-           class="button white">Edytuj</a>
-        <button class="button">Usuń</button>
-    </div>
-</div>
-{% endfor %}
-
-{% endif %}
-
-{% endblock %}
-
 
 {% block edit_from %}
 <div class="form-container">
@@ -57,11 +29,44 @@
             <label for="long_name" class="form-label">Pełna nazwa:</label>
             <input type="text" id="long_name" name="long_name" value="" class="form-input">
 
-            <label for="show_on_slide" class="form-label">Pokazuj sekcję na sliderze</label>
-            <input type="checkbox" id="show_on_slide" name="show_on_slide" value="" class="form-input">
+            <label class="form-label">&nbsp;</label>
+            <div class="checkbox-wrapper">
+                <label for="show_on_slide" class="checkbox-label">Pokazuj sekcję na sliderze</label>
+                <input type="checkbox" id="show_on_slide" name="show_on_slide" value="" class="form-checkbox">
+            </div>
 
-            <label for="show_on_menu" class="form-label">Pokazuj sekcję na menu głównym</label>
-            <input type="checkbox" id="show_on_menu" name="show_on_menu" value="" class="form-input">
+            <label class="form-label">&nbsp;</label>
+            <div class="checkbox-wrapper">
+                <label for="show_on_menu" class="checkbox-label">Pokazuj sekcję na menu głównym</label>
+                <input type="checkbox" id="show_on_menu" name="show_on_menu" value="" class="form-checkbox">
+            </div>
+
+            <div>
+                <label for="fill-options" class="form-label">Wypełnienie sekcji:</label>
+                <select name="fill-options" id="fill-options" class="form-input">
+                    <option value="none" selected>brak</option>
+                    <option value="collection">kolekcja elementów</option>
+                    <option value="fragment_html">fragment HTML</option>
+                </select>
+            </div>
+
+            <div class="hide">
+                <label for="collection-options" class="form-label">Wybór kolekcji:</label>
+                <select name="collection-options" id="collection-options" class="form-input">
+                    <option value="python" selected>projekty python</option>
+                    <option value="games">kolekcja gier</option>
+                </select>
+            </div>
+
+
+            <div class="hide">
+                <label for="page-options" class="form-label">Wybór fragmentu HTML:</label>
+                <select name="page-options" id="page-options" class="form-input">
+                    <option value="fragment_1" selected>nazwa fragmentu 1</option>
+                    <option value="fragment_2">nazwa fragmentu 2</option>
+                </select>
+            </div>
+
 
             <label for="description" class="form-label">Opis sekcji</label>
             <textarea id="description" name="description" rows=4 class="form-input"></textarea>

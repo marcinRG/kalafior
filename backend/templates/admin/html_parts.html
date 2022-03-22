@@ -22,11 +22,20 @@
     <div class="element-content">
         <div>
             <div>
-                {% for id,value in content.items(): %}
                 <div class="row">
-                    <label class="elem-label">{{id}}</label><span class="elem-value">{{value}}</span>
+                    <label class="elem-label">Id elementu:</label><span class="elem-value">{{content['id']}}</span>
                 </div>
-                {% endfor %}
+                <div class="row">
+                    <label class="elem-label">Opis:</label><span class="elem-value">{{content['description']}}</span>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Zawartość podgląd:</label>
+                    <div class="elem-value">{{content['content']|safe}}</div>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Zawartość:</label>
+                    <textarea class="elem-value" rows="4" readonly>{{content['content']}}</textarea>
+                </div>
             </div>
         </div>
     </div>

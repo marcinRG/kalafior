@@ -21,7 +21,7 @@
             <img class="logo" src="images/logo.jpg" alt="logo">
         </div>
         <ul class="app-menu">
-            <li class="menu-item"><a href="#" class="link">kategoria 1</a></li>
+            <li class="menu-item"><a href="#" class="link selected">kategoria 1</a></li>
             <li class="menu-item"><a href="#" class="link">coś innego</a></li>
             <li class="menu-item"><a href="#" class="link">python - projekty</a></li>
             <li class="menu-item"><a href="#" class="link">gry - projekty</a></li>
@@ -38,6 +38,23 @@
                 <input type="text" id="login" name="login" value="" class="form-input">
                 <label for="password" class="form-label">Hasło:</label>
                 <input type="password" id="password" name="password" value="" class="form-input">
+
+                <label for="password" class="form-label">Hasło:</label>
+                <div class="checkbox-wrapper">
+                    <label for="show_on_menu" class="checkbox-label">Pokazuj sekcję na menu głównym</label>
+                    <input type="checkbox" id="show_on_menu" name="show_on_menu" value="" class="form-checkbox">
+                </div>
+
+
+                <label for="options" class="form-label">Hasło:</label>
+                <select name="options" id="options" class="form-input">
+                    <option value="option-1">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+
+
                 <div class="button-wrapper">
                     <input type="submit" value="zaloguj" class="button white">
                 </div>
