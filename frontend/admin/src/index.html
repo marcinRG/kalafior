@@ -42,17 +42,41 @@
                 <label for="password" class="form-label">Hasło:</label>
                 <div class="checkbox-wrapper">
                     <label for="show_on_menu" class="checkbox-label">Pokazuj sekcję na menu głównym</label>
-                    <input type="checkbox" id="show_on_menu" name="show_on_menu" value="" class="form-checkbox">
+                    <input type="checkbox" id="show_on_menu" name="show_on_menu" value="False" class="form-checkbox">
                 </div>
 
+                <div class="selections">
+                    <div data-type="fill_selection">
+                        <label for="options" class="form-label">Hasło:</label>
+                        <select name="options" id="options" class="form-input">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option selected value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </div>
 
-                <label for="options" class="form-label">Hasło:</label>
-                <select name="options" id="options" class="form-input">
-                    <option value="option-1">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
+                    <div data-type="saab" class="hide">
+                        <label for="options2" class="form-label">Hasło:</label>
+                        <select name="options2" id="options2" class="form-input">
+                            <option value="option-1">Saab 1</option>
+                            <option value="saab_1">Saab 2</option>
+                            <option value="mercedes_2">Saab 3</option>
+                            <option value="audi-0">Saab 4</option>
+                        </select>
+                    </div>
+
+                    <div data-type="mercedes" class="hide">
+                        <label for="options3" class="form-label">Hasło:</label>
+                        <select name="options3" id="options3" class="form-input">
+                            <option value="option-1">Benz</option>
+                            <option value="option-2">Vito</option>
+                            <option value="option-3">Sprinter</option>
+
+                        </select>
+                    </div>
+
+                </div>
 
 
                 <div class="button-wrapper">
@@ -100,7 +124,5 @@
     </div>
 
 </main>
-
-
 </body>
 </html>

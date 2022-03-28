@@ -3,27 +3,63 @@
 <div class="row">
     <label class="elem-label">{{id}}</label>
     <span class="elem-value">
-         {% if value is boolean %}
-            {% if value is true %}
-              🗹
-            {% elif value is false %}
-              ☐
-            {% endif %}
+        {% if value is boolean %}
+        {% if value is true %}
+        🗹
+        {% elif value is false %}
+        ☐
+        {% endif %}
         {% endif %}
 
         {% if value is sequence and not value is string %}
-          {% for v in value: %}
-              &nbsp;{{ v }}
-              {%- if not loop.last -%},{% endif %}
-          {% endfor %}
+        {% for v in value: %}
+        &nbsp;{{ v }}
+        {%- if not loop.last -%},{% endif %}
+        {% endfor %}
         {% endif %}
 
         {% if value is string %}
-           {{value}}
+        {{value}}
         {% endif %}
     </span>
 </div>
 
 
+{%- endmacro %}
+
+
+{% macro create_menu_item(section, current_page) -%}
+<li class="menu-item">
+    {% if section['id'] == current_page %}
+    <a href="/admin/{{section['id']}}" class="link selected">{{ section['title'] }}</a>
+    {% else %}
+    <a href="/admin/{{section['id']}}" class="link">{{ section['title'] }}</a>
+    {% endif %}
+</li>
+{%- endmacro %}
+
+{% macro create_check_box(name,value,label) -%}
+<label class="form-label">&nbsp;</label>
+<div class="checkbox-wrapper">
+    <label for="{{name}}" class="checkbox-label">{{label}}</label>
+    {% if value==True %}
+    <input type="checkbox" id="{{name}}" name="{{name}}" value="True" checked class="form-checkbox">
+    {% else %}
+    <input type="checkbox" id="{{name}}" name="{{name}}" value="False" class="form-checkbox">
+    {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro create_dropdown_list(selected_value,values_list,name, label) -%}
+
+    <label for="{{name}}" class="form-label">{{label}}</label>
+    <select name="{{name}}" id="{{name}}" class="form-input">
+        {% for value in values_list: %}
+        <option value="{{value['id']}}" {% if value['id']==selected_value %} selected {% endif %}>
+            {{value['description']}}
+        </option>
+        {% endfor %}
+    </select>
 
 {%- endmacro %}
+

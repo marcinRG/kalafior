@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <script defer src="{{url_for('static', filename='/admin/app.ec529e5777b872c92043.js')}}"></script>
     <link href="{{url_for('static', filename='/admin/style.css')}}" rel="stylesheet">
 </head>
 <body class="app-body">
@@ -28,7 +27,7 @@
         <ul class="app-menu">
 
             {% for section in sections: %}
-            <li class="menu-item"><a href="/admin/{{section['id']}}" class="link">{{ section['title'] }}</a></li>
+               {{ macros.create_menu_item(section, page) }}
             {% endfor %}
 
         </ul>
@@ -56,8 +55,8 @@
             <div class="element-content">
                 <div>
                     <div>
-                        {% for id,value in content.items(): %}
-                        {{macros.row_value(id,value)}}
+                        {% for key,value in content.items(): %}
+                        {{macros.row_value(key,value)}}
                         {% endfor %}
                     </div>
                 </div>
@@ -80,5 +79,6 @@
 
 </main>
 {% endif %}
+<script src="{{url_for('static', filename='/admin/app.js')}}" type="application/javascript"></script>
 </body>
 </html>

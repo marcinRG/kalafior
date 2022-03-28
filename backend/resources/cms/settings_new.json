@@ -6,26 +6,46 @@
     {
       "id": "sections",
       "type": "file",
+      "fill_type": "Other",
       "resource_name": "sections.json",
       "title": "sekcje strony głównej"
     },
     {
       "id": "python",
       "type": "file",
+      "fill_type": "Collection",
+      "description": "projekty python",
       "resource_name": "python_projects.json",
       "title": "python-projekty"
     },
     {
       "id": "games",
       "type": "file",
+      "fill_type": "Collection",
+      "description": "projekty gry",
       "resource_name": "games.json",
       "title": "gry-projekty"
     },
     {
       "id": "html_parts",
       "type": "file",
+      "fill_type": "HTML_part",
       "resource_name": "html_parts.json",
       "title": "fragmenty html"
+    }
+  ],
+  "fill_types": [
+    {
+      "id": "None",
+      "description": "brak"
+    },
+    {
+      "id": "Collection",
+      "description": "kolekcja elementów"
+    },
+    {
+      "id": "HTML_part",
+      "description": "fragment HTML"
     }
   ]
 }

@@ -19,6 +19,21 @@ pages_address = {
     'html_parts': 'admin/html_parts.html'
 }
 
+fill_types = [
+    {
+        'id': 'None',
+        'description': 'brak'
+    },
+    {
+        'id': 'Collection',
+        'description': 'kolekcja elementów'
+    },
+    {
+        'id': 'HTML_part',
+        'description': 'fragment HTML'
+    },
+]
+
 
 def login_user(user_data):
     is_logged_in = cms.login(user_data)
@@ -55,23 +70,14 @@ def get_page_address(page):
 
 def get_list_content(page):
     page_content = []
-    pages = {
-        'sections': {
-            'content': cms.get_page_sections(),
-        },
-        'python': {
-            'content': cms.get_python_projects(),
-        },
-        'games': {
-            'content': cms.get_games_projects(),
-        },
-        'html_parts': {
-            'content': cms.get_html_fragments(),
-        }
-    }
-    selected_page = pages.get(page)
-    if selected_page:
-        page_content = selected_page['content']
+    if page == 'sections':
+        page_content = cms.get_page_sections()
+    if page == 'python':
+        page_content = cms.get_python_projects()
+    if page == 'games':
+        page_content = cms.get_games_projects()
+    if page == 'html_parts':
+        page_content = cms.get_html_fragments()
     return page_content
 
 
@@ -106,39 +112,58 @@ def login():
     return render_template("admin/login.html")
 
 
+def handle_post_request(request_args):
+    print(request_args)
+
+
+def handle_get_request(request_args, page):
+    mode = 'list'
+    data = []
+    if request_args.get('logout') == 'ok':
+        log_out()
+        return redirect('/login')
+
+    if request_args.get('mode'):
+        mode = request_args.get('mode')
+
+    if mode == 'list':
+        data = get_list_content(page)
+
+    if mode == 'edit':
+        id_elem = request_args.get('id_elem')
+        data = get_content_edit_element(page, id_elem)
+        print(data)
+
+    if mode == 'new':
+        data = {}
+
+    return render_template(get_page_address(page), page_content=data,
+                           sections=cms.get_section_names(), fill_types=cms.get_fill_types(),
+                           collection_names=cms.get_collections_names(), html_parts_names=cms.get_html_fragments(),
+                           page=page, user_data=get_session_data(), mode=mode)
+
+
 @app.route("/admin/<page>", methods=['GET', 'POST', 'OPTIONS'])
 def admin(page):
-    print(request.form.to_dict())
-
+    print('here we go')
     if is_user_logged_in():
-        mode = 'list'
-        data = []
-        request_args = request.args.to_dict()
-        if request_args.get('logout') == 'ok':
-            log_out()
-            return redirect('/login')
+        get_request = request.args.to_dict()
+        post_request = request.form.to_dict()
+        if post_request:
+            handle_post_request(post_request)
+            print('post request has args')
 
-        if request_args.get('mode'):
-            mode = request_args.get('mode')
+        if get_request:
+            print('get request has args')
 
-        if mode == 'list':
-            data = get_list_content(page)
-
-        if mode == 'edit':
-            id_elem = request_args.get('id_elem')
-            data = get_content_edit_element(page, id_elem)
-
-        if mode == 'new':
-            data = {}
-
-        print(get_page_address(page))
-        return render_template(get_page_address(page), page_content=data,
-                               sections=cms.get_section_names(), page=page, user_data=get_session_data(), mode=mode)
+        return handle_get_request(get_request, page)
     else:
         return redirect('/login')
 
 
 @app.route("/kubus_puchatek")
+
+
 def puchatek():
     return render_template('puchalke.html')
 

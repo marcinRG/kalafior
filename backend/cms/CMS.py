@@ -33,6 +33,14 @@ class CMS:
         list_res = self.__get_settings()['resources']
         return [{'title': element['title'], 'id': element['id']} for element in list_res]
 
+    def get_collections_names(self):
+        list_res = self.__get_settings()['resources']
+        return [{'title': element['title'], 'id': element['id'], 'description': element['description']} for element in
+                list_res if element['fill_type'] == 'Collection']
+
+    def get_fill_types(self):
+        return self.__get_settings()['fill_types']
+
     def __write_new_values_to_file(self, resource_id, data):
         settings = [element for element in self.__get_settings()['resources'] if element['id'] == resource_id][0]
         file = self.__get_resource_file(settings)
