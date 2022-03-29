@@ -5,13 +5,28 @@
 
 .app-body {
   background-color: #c5dec5;
+  position: relative;
+  padding: 20px 0;
+}
+
+.info-screen {
+  position: absolute;
+  background-color: whitesmoke;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 50;
 }
 
 .app-main {
   @include box-shadow-helper(2);
   display: block;
   width: 80%;
-  margin: 20px auto;
+  position: relative;
+  margin: 0 auto;
   background-color: white;
 }
 
