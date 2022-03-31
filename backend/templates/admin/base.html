@@ -11,73 +11,88 @@
     <link href="{{url_for('static', filename='/admin/style.css')}}" rel="stylesheet">
 </head>
 <body class="app-body">
-{% if user_data['logged_in'] and user_data['login'] %}
-<main class="app-main">
 
-    <div class="small-bar">
-        <div class="info name"><span>{{ user_data['login'] }}</span></div>
-        <div class="info logout"><a href="{{url_for('admin',page=page, logout='ok')}}">wyloguj</a></div>
-    </div>
-
-    <nav class="navbar">
-        <div class="img-wrapper">
-            <img class="logo" src="{{url_for('static', filename='/admin/assets/logo_5f1067b0cf21e381dcb8.jpg')}}"
-                 alt="logo">
+<div class="info-wrapper">
+    <div class="info-screen">
+        <div class="info-msg">
+            <p class="info-title"></p>
+            <p class="message"></p>
+            <div class="element-btn-wrapper">
+            </div>
         </div>
-        <ul class="app-menu">
+    </div>
+</div>
 
-            {% for section in sections: %}
-               {{ macros.create_menu_item(section, page) }}
-            {% endfor %}
+{% if user_data['logged_in'] and user_data['login'] %}
+<div class="app-wrapper">
+    <main class="app-main">
 
-        </ul>
-    </nav>
+        <div class="small-bar">
+            <div class="info name"><span>{{ user_data['login'] }}</span></div>
+            <div class="info logout"><a href="{{url_for('admin',page=page, logout='ok')}}">wyloguj</a></div>
+        </div>
 
-    {% if mode == 'edit' or mode =='new' %}
+        <nav class="navbar">
+            <div class="img-wrapper">
+                <img class="logo" src="{{url_for('static', filename='/admin/assets/logo_5f1067b0cf21e381dcb8.jpg')}}"
+                     alt="logo">
+            </div>
+            <ul class="app-menu">
 
-        {% block edit_from %}
-        {% endblock %}
+                {% for section in sections: %}
+                   {{ macros.create_menu_item(section, page) }}
+                {% endfor %}
 
-    {% elif mode == 'list' %}
+            </ul>
+        </nav>
 
-    <div class="list-container">
+        {% if mode == 'edit' or mode =='new' %}
 
-        {% block page_title %}
-        {% endblock %}
+            {% block edit_from %}
+            {% endblock %}
 
-        {%block list %}
+        {% elif mode == 'list' %}
 
-        {% if page_content and page_content|length >0 %}
+        <div class="list-container">
 
-        {% for content in page_content: %}
+            {% block page_title %}
+            {% endblock %}
 
-        <div class="list-element">
-            <div class="element-content">
-                <div>
+            {%block list %}
+
+            {% if page_content and page_content|length >0 %}
+
+            {% for content in page_content: %}
+
+            <div class="list-element">
+                <div class="element-content">
                     <div>
-                        {% for key,value in content.items(): %}
-                        {{macros.row_value(key,value)}}
-                        {% endfor %}
+                        <div>
+                            {% for key,value in content.items(): %}
+                            {{macros.row_value(key,value)}}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
+                <div class="element-btn-wrapper">
+                    <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+                       class="button white">Edytuj</a>
+                    <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
+                            data-id="{{content['id']}}">Usuń</button>
+                </div>
             </div>
-            <div class="element-btn-wrapper">
-                <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
-                   class="button white">Edytuj</a>
-                <button class="button">Usuń</button>
-            </div>
+            {% endfor %}
+
+            {% endif %}
+
+            {% endblock %}
+
         </div>
-        {% endfor %}
 
         {% endif %}
 
-        {% endblock %}
-
-    </div>
-
-    {% endif %}
-
-</main>
+    </main>
+</div>
 {% endif %}
 <script src="{{url_for('static', filename='/admin/app.js')}}" type="application/javascript"></script>
 </body>

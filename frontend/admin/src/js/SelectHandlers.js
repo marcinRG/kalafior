@@ -14,9 +14,10 @@ export class SelectHandlers {
     }
 
     initialize() {
-        const currentValue = Array.from(this.mainSelector.querySelectorAll('option')).filter(div => div.hasAttribute('selected'))[0].value;
-        if (currentValue) {
-            showSelectedDiv(this.selectsDiv, currentValue);
+        const options = this.mainSelector.querySelectorAll('option');
+        const option = Array.from(options).filter(div => div.hasAttribute('selected'))[0];
+        if (option) {
+            showSelectedDiv(this.selectsDiv, option.value);
         }
     }
 

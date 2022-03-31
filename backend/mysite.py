@@ -112,8 +112,11 @@ def login():
     return render_template("admin/login.html")
 
 
-def handle_post_request(request_args):
-    print(request_args)
+def handle_post_request(request_args, page):
+    print('-----post request------')
+    if page == 'sections' and request_args.get('form_type') == 'sections_form':
+        cms.edit_page_section(request_args.get('id'), request_args)
+        return redirect('/admin/' + page)
 
 
 def handle_get_request(request_args, page):
@@ -134,6 +137,11 @@ def handle_get_request(request_args, page):
         data = get_content_edit_element(page, id_elem)
         print(data)
 
+    if mode == 'remove':
+        if request_args.get('id_elem'):
+            cms.remove_page_section(request_args.get('id_elem'))
+            return redirect('/admin/sections')
+
     if mode == 'new':
         data = {}
 
@@ -149,8 +157,9 @@ def admin(page):
     if is_user_logged_in():
         get_request = request.args.to_dict()
         post_request = request.form.to_dict()
+
         if post_request:
-            handle_post_request(post_request)
+            handle_post_request(post_request, page)
             print('post request has args')
 
         if get_request:
@@ -162,8 +171,6 @@ def admin(page):
 
 
 @app.route("/kubus_puchatek")
-
-
 def puchatek():
     return render_template('puchalke.html')
 
