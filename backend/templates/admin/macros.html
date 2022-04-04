@@ -42,11 +42,9 @@
 <label class="form-label">&nbsp;</label>
 <div class="checkbox-wrapper">
     <label for="{{name}}" class="checkbox-label">{{label}}</label>
-    {% if value==True %}
-    <input type="checkbox" id="{{name}}" name="{{name}}" value="True" checked class="form-checkbox">
-    {% else %}
-    <input type="checkbox" id="{{name}}" name="{{name}}" value="False" class="form-checkbox">
-    {% endif %}
+    <input type="checkbox" id="{{name}}" name="{{name}}" value="True"
+           {% if value==True %}  checked  {% endif %}
+           class="form-checkbox">
 </div>
 {%- endmacro %}
 

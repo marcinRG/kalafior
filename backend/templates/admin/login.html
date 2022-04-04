@@ -11,7 +11,8 @@
     <link href="{{url_for('static', filename='/admin/style.css')}}" rel="stylesheet">
 </head>
 <body class="app-body">
-<main class="app-main">
+<div class="app-wrapper">
+    <main class="app-main">
         <div class="form-container">
             <form action="/login" method="post" class="app-form login">
                 <p class="form-title">Logowanie</p>
@@ -27,6 +28,7 @@
                 </div>
             </form>
         </div>
-</main>
+    </main>
+</div>
 </body>
 </html>

@@ -1,0 +1,19 @@
+{% import 'admin/macros.html' as macros %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>password generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="app-body">
+<form action="/test" method="post">
+    <input type="checkbox" value="cośtam" name="test_checkbox"/>
+    <input type="text" value="cos innego" name="test_input"/>
+    {{macros.create_check_box('check_1', 'jakas wartość', 'check 1')}}
+    {{macros.create_check_box('show_on_slide', 'inna vartosc', 'check 2')}}
+
+    <input type="submit" value="wyślij"/>
+</form>
+</body>
+</html>

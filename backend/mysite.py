@@ -5,8 +5,9 @@ from cms.CMS import CMS
 from utils.crossdomain import crossdomain
 from utils.generate_password import generate_password
 from utils.import_text_to_list import import_text_to_list
-from cms.cms_settings_file import cms_settings_file, cms_settings_file_new
+from cms.cms_settings_file import cms_settings_file_new
 from cms.cms_settings_file import cms_admin
+from utils.request_functions import edit_or_add_new
 
 app = Flask(__name__)
 app.secret_key = 'NFcT&jCOn#ekRB~qyh9gSAso*l2+pXYUwDHt!PI5'
@@ -18,21 +19,6 @@ pages_address = {
     'games': '/admin/games.html',
     'html_parts': 'admin/html_parts.html'
 }
-
-fill_types = [
-    {
-        'id': 'None',
-        'description': 'brak'
-    },
-    {
-        'id': 'Collection',
-        'description': 'kolekcja elementów'
-    },
-    {
-        'id': 'HTML_part',
-        'description': 'fragment HTML'
-    },
-]
 
 
 def login_user(user_data):
@@ -113,10 +99,9 @@ def login():
 
 
 def handle_post_request(request_args, page):
-    print('-----post request------')
     if page == 'sections' and request_args.get('form_type') == 'sections_form':
-        cms.edit_page_section(request_args.get('id'), request_args)
-        return redirect('/admin/' + page)
+        edit_or_add_new(request_args, cms.edit_page_section, cms.add_page_section)
+    return redirect('/admin/' + page)
 
 
 def handle_get_request(request_args, page):
@@ -140,7 +125,7 @@ def handle_get_request(request_args, page):
     if mode == 'remove':
         if request_args.get('id_elem'):
             cms.remove_page_section(request_args.get('id_elem'))
-            return redirect('/admin/sections')
+        return redirect('/admin/' + page)
 
     if mode == 'new':
         data = {}
@@ -200,6 +185,14 @@ def password_data():
 @app.route("/pass_generator")
 def pass_generator():
     return render_template('pass_generator.html')
+
+
+@app.route("/test", methods=['POST', 'GET', 'OPTIONS'])
+def test_page():
+    print('handler test')
+    post_data = request.form.to_dict()
+    print(post_data)
+    return render_template('test.html')
 
 
 if __name__ == '__main__':

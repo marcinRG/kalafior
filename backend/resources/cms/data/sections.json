@@ -2,22 +2,19 @@
     {
         "id": "title",
         "short_name": "kalafior.site",
-        "long_name": "",
+        "long_name": "To jest pe\u0142na nazwa",
         "show_on_slide": true,
-        "show_on_menu": false,
-        "fill_type": "None",
+        "fill_options": "None",
         "description": "witaj na mojej stronie"
     },
     {
-        "form_type": "sections_form",
         "id": "python",
         "short_name": "Python",
         "long_name": "python projekty - moje projekty pytnonowe.",
-        "show_on_slide": "True",
-        "show_on_menu": "True",
-        "fill-options": "Collection",
-        "html-options": "html_fragment_1",
-        "collection-options": "python",
+        "show_on_slide": true,
+        "show_on_menu": true,
+        "fill_options": "Collection",
+        "collection_options": "python",
         "description": "zrealizowane prze mnie projekty pytonowe. Co\u015b tutaj jest napisane jeszcze."
     },
     {
@@ -26,8 +23,8 @@
         "long_name": "gry projekty",
         "show_on_slide": true,
         "show_on_menu": true,
-        "fill_type": "Collection",
-        "fill_id": "games",
+        "fill_options": "Collection",
+        "collection_options": "games",
         "description": "R\u00f3\u017ane gierki i tak dalej"
     },
     {
@@ -36,20 +33,17 @@
         "long_name": "Inne informacje",
         "show_on_slide": true,
         "show_on_menu": true,
-        "fill_type": "HTML_part",
-        "fill_id": "html_fragment_1",
+        "fill_options": "HTML_part",
+        "html_options": "html_fragment_1",
         "description": "Inne informacje"
     },
     {
-        "form_type": "sections_form",
         "id": "about",
         "short_name": "O mnie",
         "long_name": "O autorze strony",
-        "show_on_slide": "True",
-        "show_on_menu": "True",
-        "fill-options": "HTML_part",
-        "html-options": "html_fragment_1",
-        "collection-options": "python",
+        "show_on_slide": true,
+        "show_on_menu": true,
+        "fill_options": "None",
         "description": "R\u00f3\u017cne informacje o autorze strony. Dodatkowe zdanie."
     }
 ]
