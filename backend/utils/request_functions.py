@@ -44,3 +44,7 @@ def clean_fill_page_options(request_args):
     else:
         copy['fill_options'] == 'None'
     return copy
+
+
+def allowed_file(filename, allowed_extensions):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions

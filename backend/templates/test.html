@@ -1,19 +1,30 @@
-{% import 'admin/macros.html' as macros %}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>password generator</title>
+    <title>kalafior.site</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <script defer src="{{url_for('static', filename='/admin/app.ec529e5777b872c92043.js')}}"></script>
+    <link href="{{url_for('static', filename='/admin/style.css')}}" rel="stylesheet">
 </head>
 <body class="app-body">
-<form action="/test" method="post">
-    <input type="checkbox" value="cośtam" name="test_checkbox"/>
-    <input type="text" value="cos innego" name="test_input"/>
-    {{macros.create_check_box('check_1', 'jakas wartość', 'check 1')}}
-    {{macros.create_check_box('show_on_slide', 'inna vartosc', 'check 2')}}
 
-    <input type="submit" value="wyślij"/>
-</form>
+            <form action="/test" method="post" enctype="multipart/form-data" class="app-form login">
+                <p class="form-title">Logowanie</p>
+                <div class="form-inside-container">
+                    <input type="hidden" value="login_form" id="login_form" name="form_type" style="display: none">
+                    <label for="login" class="form-label">Jakieś pole</label>
+                    <input type="text" id="login" name="login" value="" class="form-input">
+                    <label for="img" class="form-label">Wybierz obrazek:</label>
+                    <input type="file" id="img" name="file" value="" class="form-input">
+                    <div class="button-wrapper">
+                        <input type="submit" value="wyślij" class="button white">
+                    </div>
+                </div>
+            </form>
+
 </body>
 </html>

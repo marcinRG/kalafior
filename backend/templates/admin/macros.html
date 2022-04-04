@@ -1,5 +1,7 @@
 {% macro row_value(id, value) -%}
 
+{% if value%}
+
 <div class="row">
     <label class="elem-label">{{id}}</label>
     <span class="elem-value">
@@ -24,6 +26,7 @@
     </span>
 </div>
 
+{% endif %}
 
 {%- endmacro %}
 
@@ -61,3 +64,19 @@
 
 {%- endmacro %}
 
+
+{% macro create_field_from_list(txt_label,value_id,collection) -%}
+    {% if value_id %}
+        <div class="row">
+            <label class="elem-label">{{txt_label}}</label>
+            <span class="elem-value">
+               {% for elem in collection:%}
+                    {% if value_id == elem['id'] %}
+                        {{ elem['description'] }}
+                    {% endif %}
+               {% endfor %}
+            </span>
+        </div>
+    {% endif %}
+
+{%- endmacro %}

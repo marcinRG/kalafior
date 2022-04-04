@@ -63,3 +63,55 @@
     </form>
 </div>
 {% endblock %}
+
+
+{%block list %}
+
+{% if page_content and page_content|length > 0 %}
+
+    {% for content in page_content: %}
+
+        <div class="list-element">
+            <div class="element-content">
+                <div>
+                    <div>
+                        <div class="row">
+                            <label class="elem-label">Id elementu:</label><span class="elem-value">{{content['id']}}</span>
+                        </div>
+                        <div class="row">
+                            <label class="elem-label">Skrócona nazwa:</label><span class="elem-value">{{content['short_name']}}</span>
+                        </div>
+
+                        <div class="row">
+                            <label class="elem-label">Pełna nazwa:</label><span class="elem-value">{{content['long_name']}}</span>
+                        </div>
+
+                        {{ macros.row_value('Pokazuj na sliderze:', content['show_on_slide']) }}
+
+                        {{ macros.row_value('Pokazuj w menu:', content['show_on_menu']) }}
+
+                        {{ macros.create_field_from_list('Sposób wypełniania podstrony:', content['fill_options'], fill_types) }}
+
+                        {{ macros.row_value('Id elementu html:', content['html_options']) }}
+
+                        {{ macros.row_value('Id kolekcji:', content['collection_options']) }}
+
+                        <div class="row">
+                            <label class="elem-label">Opis:</label><span class="elem-value">{{content['description']}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="element-btn-wrapper">
+                <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+                   class="button white">Edytuj</a>
+                <button class="button red">Usuń</button>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}

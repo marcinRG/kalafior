@@ -1,17 +1,21 @@
 import os
 from flask import Flask, render_template, request, send_from_directory, jsonify, redirect, url_for, g, session
+from werkzeug.utils import secure_filename
 
 from cms.CMS import CMS
 from utils.crossdomain import crossdomain
 from utils.generate_password import generate_password
 from utils.import_text_to_list import import_text_to_list
-from cms.cms_settings_file import cms_settings_file_new
+from cms.cms_settings_file import cms_settings_file, cms_images_folder
 from cms.cms_settings_file import cms_admin
-from utils.request_functions import edit_or_add_new
+from utils.request_functions import edit_or_add_new, allowed_file
 
 app = Flask(__name__)
 app.secret_key = 'NFcT&jCOn#ekRB~qyh9gSAso*l2+pXYUwDHt!PI5'
-cms = CMS(os.getcwd(), cms_admin, cms_settings_file_new)
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
+ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'svg']
+app.config['UPLOAD_FOLDER'] = cms_images_folder
+cms = CMS(os.getcwd(), cms_admin, cms_settings_file)
 
 pages_address = {
     'sections': '/admin/sections.html',
@@ -189,9 +193,16 @@ def pass_generator():
 
 @app.route("/test", methods=['POST', 'GET', 'OPTIONS'])
 def test_page():
-    print('handler test')
-    post_data = request.form.to_dict()
-    print(post_data)
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename, ALLOWED_EXTENSIONS):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(request.url)
     return render_template('test.html')
 
 
