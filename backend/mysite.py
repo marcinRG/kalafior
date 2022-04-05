@@ -144,15 +144,12 @@ def handle_get_request(request_args, page):
 def admin(page):
     print('here we go')
     if is_user_logged_in():
-        get_request = request.args.to_dict()
-        post_request = request.form.to_dict()
-
-        if post_request:
+        if request.method == 'POST':
+            post_request = request.form.to_dict()
             handle_post_request(post_request, page)
-            print('post request has args')
 
-        if get_request:
-            print('get request has args')
+        if request.method == 'GET':
+            get_request = request.args.to_dict()
 
         return handle_get_request(get_request, page)
     else:
