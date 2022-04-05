@@ -15,7 +15,7 @@
 
 {% block edit_from %}
 <div class="form-container">
-    <form action="/admin/python" method="post" class="app-form login">
+    <form action="/admin/python" method="post" enctype="multipart/form-data" class="app-form login">
         <p class="form-title">Edycja/dodawanie nowego projektu python</p>
         <div class="form-inside-container">
 
@@ -29,8 +29,12 @@
             <label for="description" class="form-label">Opis projektu:</label>
             <textarea id="description" name="description" class="form-input" rows="4"></textarea>
 
-            <label for="image" class="form-label">Obraz do projektu:</label>
-            <input type="text" id="image" name="image" value="" class="form-input">
+            <div class="image-uploader">
+                <label for="btn-upload" class="form-label">Dodaj obrazek:</label>
+                <img src="{{url_for('static', filename='/admin/assets/logo_5f1067b0cf21e381dcb8.jpg')}}" class="uploaded-image hide">
+                <input type="file" name="file" style="display: none" class="input-file">
+                <input type="button" id="btn-upload" class="small-button" value="wczytaj plik">
+            </div>
 
             <label for="tags" class="form-label">Tagi</label>
             <input type="text" id="tags" name="tags" value="" class="form-input">
