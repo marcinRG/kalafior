@@ -339,6 +339,16 @@
     font-size: 16px;
     font-weight: bold;
     outline: 0;
+
+    &.link {
+      color: #037003;
+    }
+
+    &.image {
+      max-width: 200px;
+      height: auto;
+    }
+
   }
 
 }
@@ -349,7 +359,6 @@
   background-color: #13a113;
   max-width: 300px;
   height: auto;
-  margin-bottom: 5px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   outline: 0;
 }

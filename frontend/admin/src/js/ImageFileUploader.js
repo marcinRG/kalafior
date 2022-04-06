@@ -1,8 +1,12 @@
 export class ImageFileUploader {
     constructor() {
         this.fileInput = document.querySelector('.image-uploader .input-file');
+        this.fileName = document.querySelector('.image-uploader .file-name');
         this.uploadButton = document.querySelector('.image-uploader .small-button');
         this.thumbnailImage = document.querySelector('.image-uploader .uploaded-image');
+        if (this.fileName) {
+            this.fileName.value = '';
+        }
         this.addFileUploadHandler();
         this.addButtonHandler();
     }
@@ -21,6 +25,9 @@ export class ImageFileUploader {
                 if (this.thumbnailImage) {
                     this.thumbnailImage.src = img.src;
                     this.thumbnailImage.classList.remove('hide');
+                }
+                if (this.fileName) {
+                    this.fileName.value = file.name;
                 }
             });
         });
