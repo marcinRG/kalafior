@@ -20,29 +20,88 @@
         <div class="form-inside-container">
 
             <input type="hidden" value="python_form" id="python_form" name="form_type" style="display: none">
+            <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id projektu:</label>
-            <input type="text" id="id" name="id" value="" class="form-input">
+            <input type="text" id="id" name="id" value="{{ page_content['id'] }}" class="form-input">
 
             <label for="name" class="form-label">Nazwa:</label>
-            <input type="text" id="name" name="name" value="" class="form-input">
+            <input type="text" id="name" name="name" value="{{page_content['name']}}" class="form-input">
+
+            <label for="link" class="form-label">Link:</label>
+            <input type="text" id="link" name="link" value="{{page_content['link']}}" class="form-input">
 
             <label for="description" class="form-label">Opis projektu:</label>
-            <textarea id="description" name="description" class="form-input" rows="4"></textarea>
+            <textarea id="description" name="description" class="form-input"
+                      rows="4">{{page_content['description']}}</textarea>
 
             <div class="image-uploader">
-                <label for="btn-upload" class="form-label">Dodaj obrazek:</label>
-                <img src="{{url_for('static', filename='/admin/assets/logo_5f1067b0cf21e381dcb8.jpg')}}" class="uploaded-image hide">
+                <label for="btn-upload" class="form-label">Dodaj/zmień obrazek:</label>
+                <img src="{{url_for('static', filename='/admin/assets/logo_5f1067b0cf21e381dcb8.jpg')}}"
+                     class="uploaded-image hide">
+                <label class="form-label"></label>
+                <input type="text" value="{{page_content['image']}}" readonly class="form-input file-name">
                 <input type="file" name="file" style="display: none" class="input-file">
                 <input type="button" id="btn-upload" class="small-button" value="wczytaj plik">
             </div>
 
             <label for="tags" class="form-label">Tagi</label>
-            <input type="text" id="tags" name="tags" value="" class="form-input">
-
+            <input type="text" id="tags" name="tags"
+                   value="{{ macros.print_collection_with_commas(page_content['tags']) }}" class="form-input">
             <div class="button-wrapper">
                 <input type="submit" value="Zapisz" class="button white">
             </div>
         </div>
     </form>
 </div>
+{% endblock %}
+
+
+{%block list %}
+
+{% if page_content and page_content|length >0 %}
+
+{% for content in page_content: %}
+
+<div class="list-element">
+    <div class="element-content">
+        <div>
+            <div>
+                <div class="row">
+                    <label class="elem-label">Id elementu:</label><span class="elem-value">{{content['id']}}</span>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Nazwa projektu:</label><span class="elem-value">{{content['name']}}</span>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Opis projektu:</label><span
+                        class="elem-value">{{content['description']}}</span>
+                </div>
+
+                <div class="row">
+                    <label class="elem-label">Link:</label><a class="elem-value link" href="{{content['link']}}"
+                                                              target="_blank">{{content['link']}}</a>
+                </div>
+
+                <div class="row">
+                    <label class="elem-label">Obrazek:</label><img
+                        src="{{url_for('static', filename=config['APP_IMAGES']+content['image'])}}" class="elem-value image"/>
+                </div>
+
+                {{ macros.row_value('Tagi:', content['tags']) }}
+
+            </div>
+        </div>
+    </div>
+    <div class="element-btn-wrapper">
+        <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+           class="button white">Edytuj</a>
+        <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
+                data-id="{{content['id']}}">Usuń
+        </button>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
 {% endblock %}

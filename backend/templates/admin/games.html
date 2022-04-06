@@ -13,22 +13,24 @@
 
 {% block edit_from %}
 <div class="form-container">
-    <form action="/admin/python" method="post" class="app-form login">
+    <form action="/admin/games" method="post" class="app-form login">
         <p class="form-title">Edycja/dodawanie nowej gry</p>
         <div class="form-inside-container">
 
             <input type="hidden" value="games_form" id="games_form" name="form_type" style="display: none">
+            <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id gry:</label>
-            <input type="text" id="id" name="id" value="" class="form-input">
+            <input type="text" id="id" name="id" value="{{page_content['id']}}" class="form-input">
 
             <label for="name" class="form-label">Nazwa:</label>
-            <input type="text" id="name" name="name" value="" class="form-input">
+            <input type="text" id="name" name="name" value="{{page_content['name']}}" class="form-input">
 
             <label for="description" class="form-label">Opis:</label>
-            <textarea id="description" name="description" class="form-input" rows="4"></textarea>
+            <textarea id="description" name="description" class="form-input"
+                      rows="4">{{page_content['description']}}</textarea>
 
             <label for="link" class="form-label">Link do gry/projektu:</label>
-            <input type="text" id="link" name="link" value="" class="form-input">
+            <input type="text" id="link" name="link" value="{{page_content['link']}}" class="form-input">
 
 
             <div class="button-wrapper">

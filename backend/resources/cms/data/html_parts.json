@@ -1,12 +1,12 @@
 [
-  {
-    "id": "html_fragment_1",
-    "description": "opis pliku jeden",
-    "content": "<p>To jest jakiś tekst</p>"
-  },
-  {
-    "id": "html_fragment_2",
-    "description": "opis pliku dwa",
-    "content": "<p>To jest jakiś tekst</p>"
-  }
+    {
+        "id": "html_fragment_1",
+        "description": "opis pliku jeden kkkkk",
+        "content": "<p>Niestety na razie nic tu nie ma.</p>"
+    },
+    {
+        "id": "html_fragment_2",
+        "description": "opis pliku dwa",
+        "content": "<p>To jest jaki\u015b tekst</p>"
+    }
 ]

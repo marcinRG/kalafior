@@ -53,20 +53,21 @@
 
 {% block edit_from %}
 <div class="form-container">
-    <form action="/admin/python" method="post" class="app-form login">
+    <form action="/admin/html_parts" method="post" class="app-form login">
         <p class="form-title">Edycja/dodawanie nowego fragmentu HTML</p>
         <div class="form-inside-container">
 
             <input type="hidden" value="html_parts_form" id="html_parts_form" name="form_type" style="display: none">
+            <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id:</label>
-            <input type="text" id="id" name="id" value="" class="form-input">
+            <input type="text" id="id" name="id" value="{{page_content['id']}}" class="form-input">
 
             <label for="description" class="form-label">Opis:</label>
-            <input type="text" id="description" name="description" value="" class="form-input">
+            <input type="text" id="description" name="description" value="{{page_content['description']}}" class="form-input">
 
 
             <label for="content" class="form-label">HTML:</label>
-            <textarea id="content" name="content" class="form-input" rows="10"></textarea>
+            <textarea id="content" name="content" class="form-input" rows="10">{{page_content['content']|safe}}</textarea>
 
             <div class="button-wrapper">
                 <input type="submit" value="Zapisz" class="button white">

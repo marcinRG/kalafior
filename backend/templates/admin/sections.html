@@ -106,7 +106,8 @@
             <div class="element-btn-wrapper">
                 <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
                    class="button white">Edytuj</a>
-                <button class="button red">Usuń</button>
+                <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
+                            data-id="{{content['id']}}">Usuń</button>
             </div>
         </div>
 

@@ -80,3 +80,12 @@
     {% endif %}
 
 {%- endmacro %}
+
+
+{% macro print_collection_with_commas(value) -%}
+    {%- if value is sequence and not value is string -%}
+        {%- for v in value: -%}
+           {{ v }}{%- if not loop.last -%},&nbsp;{%- endif -%}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endmacro %}

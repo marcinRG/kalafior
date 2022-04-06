@@ -23,7 +23,7 @@
       "type": "file",
       "fill_type": "Collection",
       "description": "projekty gry",
-      "resource_name": "games.json",
+      "resource_name": "games_projects.json",
       "title": "gry-projekty"
     },
     {

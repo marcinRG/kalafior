@@ -45,5 +45,13 @@
         "show_on_menu": true,
         "fill_options": "None",
         "description": "R\u00f3\u017cne informacje o autorze strony. Dodatkowe zdanie."
+    },
+    {
+        "id": "new_section",
+        "short_name": "new section skr\u00f3cona",
+        "long_name": "new section d\u0142uga",
+        "show_on_slide": true,
+        "fill_options": "None",
+        "description": "To jest nowa sekcja."
     }
 ]

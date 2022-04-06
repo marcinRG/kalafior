@@ -60,30 +60,30 @@
 
             {%block list %}
 
-            {% if page_content and page_content|length >0 %}
+                {% if page_content and page_content|length >0 %}
 
-            {% for content in page_content: %}
+                {% for content in page_content: %}
 
-            <div class="list-element">
-                <div class="element-content">
-                    <div>
+                <div class="list-element">
+                    <div class="element-content">
                         <div>
-                            {% for key,value in content.items(): %}
-                            {{macros.row_value(key,value)}}
-                            {% endfor %}
+                            <div>
+                                {% for key,value in content.items(): %}
+                                {{macros.row_value(key,value)}}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
+                    <div class="element-btn-wrapper">
+                        <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+                           class="button white">Edytuj</a>
+                        <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
+                                data-id="{{content['id']}}">Usuń</button>
+                    </div>
                 </div>
-                <div class="element-btn-wrapper">
-                    <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
-                       class="button white">Edytuj</a>
-                    <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
-                            data-id="{{content['id']}}">Usuń</button>
-                </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
 
-            {% endif %}
+                {% endif %}
 
             {% endblock %}
 

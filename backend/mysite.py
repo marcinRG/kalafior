@@ -14,6 +14,7 @@ app = Flask(__name__)
 app.secret_key = 'NFcT&jCOn#ekRB~qyh9gSAso*l2+pXYUwDHt!PI5'
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'svg']
+app.config['APP_IMAGES'] = '/admin/assets/images/'
 app.config['UPLOAD_FOLDER'] = cms_images_folder
 cms = CMS(os.getcwd(), cms_admin, cms_settings_file)
 
@@ -42,7 +43,6 @@ def get_session_data():
             'login': session.get('login'),
             'logged_in': session.get('logged_in')
         }
-    return None
 
 
 def log_out():
@@ -102,10 +102,33 @@ def login():
     return render_template("admin/login.html")
 
 
-def handle_post_request(request_args, page):
+def handle_post_request(request_args, request_files, page):
     if page == 'sections' and request_args.get('form_type') == 'sections_form':
-        edit_or_add_new(request_args, cms.edit_page_section, cms.add_page_section)
+        edit_or_add_new(request_args, page, cms.edit_page_section, cms.add_page_section)
+
+    if page == 'python' and request_args.get('form_type') == 'python_form':
+        file_name = save_file(request_files, ALLOWED_EXTENSIONS)
+        if file_name:
+            request_args['image'] = file_name
+        edit_or_add_new(request_args, page, cms.edit_project, cms.add_project)
+
+    if page == 'html_parts' and request_args.get('form_type') == 'html_parts_form':
+        print('you are here pages')
+        edit_or_add_new(request_args, page, cms.edit_html_fragment, cms.add_html_fragment)
+
+    if page == 'games' and request_args.get('form_type') == 'games_form':
+        edit_or_add_new(request_args, page, cms.edit_game, cms.add_game)
+
     return redirect('/admin/' + page)
+
+
+def save_file(request_files, file_extensions):
+    if 'file' in request_files:
+        file = request.files['file']
+        if file and allowed_file(file.filename, file_extensions):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return filename
 
 
 def handle_get_request(request_args, page):
@@ -140,16 +163,22 @@ def handle_get_request(request_args, page):
                            page=page, user_data=get_session_data(), mode=mode)
 
 
+def edit_data():
+    pass
+
+
 @app.route("/admin/<page>", methods=['GET', 'POST', 'OPTIONS'])
 def admin(page):
-    print('here we go')
+    get_request = request.args.to_dict()
+    post_request = request.form.to_dict()
+    request_files = request.files
+
     if is_user_logged_in():
         if request.method == 'POST':
-            post_request = request.form.to_dict()
-            handle_post_request(post_request, page)
+            handle_post_request(post_request, request_files, page)
 
         if request.method == 'GET':
-            get_request = request.args.to_dict()
+            print('get request')
 
         return handle_get_request(get_request, page)
     else:
