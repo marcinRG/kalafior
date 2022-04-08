@@ -63,7 +63,7 @@ class CMS:
         index = find_index_in_dict_list('id', id_element, collection)
         if index >= 0:
             collection.pop(index)
-            self.__write_new_values_to_file('sections', collection)
+            self.__write_new_values_to_file(collection_id, collection)
 
     def __find_element(self, collection_id, id_element):
         collection = self.__get_data_collection(collection_id)
@@ -100,6 +100,7 @@ class CMS:
         self.__edit_element('python', id_project, new_value)
 
     def remove_project(self, id_project):
+        print('remove project')
         self.__remove_element('python', id_project)
 
     def get_python_project(self, id_project):

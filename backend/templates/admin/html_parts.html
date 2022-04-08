@@ -42,7 +42,9 @@
     <div class="element-btn-wrapper">
         <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
            class="button white">Edytuj</a>
-        <button class="button red">Usuń</button>
+        <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
+                data-id="{{content['id']}}">Usuń
+        </button>
     </div>
 </div>
 {% endfor %}
@@ -60,7 +62,7 @@
             <input type="hidden" value="html_parts_form" id="html_parts_form" name="form_type" style="display: none">
             <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id:</label>
-            <input type="text" id="id" name="id" value="{{page_content['id']}}" class="form-input">
+            <input type="text" id="id" name="id" value="{{ page_content['id'] }}" class="form-input" {% if mode=='edit' %} readonly {% endif %}>
 
             <label for="description" class="form-label">Opis:</label>
             <input type="text" id="description" name="description" value="{{page_content['description']}}" class="form-input">

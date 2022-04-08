@@ -1,12 +1,7 @@
 [
     {
-        "id": "html_fragment_1",
-        "description": "opis pliku jeden kkkkk",
-        "content": "<p>Niestety na razie nic tu nie ma.</p>"
-    },
-    {
-        "id": "html_fragment_2",
-        "description": "opis pliku dwa",
-        "content": "<p>To jest jaki\u015b tekst</p>"
+        "id": "empty_page",
+        "description": "pusta strona",
+        "content": "<p>Niestety, na razie nic tu nie ma.</p>"
     }
 ]

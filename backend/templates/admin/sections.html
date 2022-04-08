@@ -22,7 +22,7 @@
             <input type="hidden" value="sections_form" id="sections_form" name="form_type" style="display: none">
             <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id sekcji:</label>
-            <input type="text" id="id" name="id" value="{{ page_content['id'] }}" class="form-input">
+            <input type="text" id="id" name="id" value="{{ page_content['id'] }}" class="form-input" {% if mode=='edit' %} readonly {% endif %}>
 
             <label for="short_name" class="form-label">Skrócona nazwa:</label>
             <input type="text" id="short_name" name="short_name" value="{{page_content['short_name']}}"
@@ -38,16 +38,16 @@
             <div class="selections">
 
                     <div data-type="fill_selection">
-                        {{ macros.create_dropdown_list(page_content['fill_type'],fill_types,'fill_options', 'Wypełnienie sekcji:') }}
+                        {{ macros.create_dropdown_list(page_content['fill_options'],fill_types,'fill_options', 'Wypełnienie sekcji:') }}
                     </div>
 
                     <div class="hide"  data-type="HTML_part">
-                          {{ macros.create_dropdown_list(page_content['fill_id'],html_parts_names,'html_options', 'Wybór fragmentu HTML:') }}
+                          {{ macros.create_dropdown_list(page_content['html_options'],html_parts_names,'html_options', 'Wybór fragmentu HTML:') }}
                     </div>
 
 
                     <div class="hide" data-type="Collection">
-                         {{ macros.create_dropdown_list(page_content['fill_id'],collection_names,'collection_options', 'Wybór kolekcji:') }}
+                         {{ macros.create_dropdown_list(page_content['collection_options'],collection_names,'collection_options', 'Wybór kolekcji:') }}
                     </div>
             </div>
 

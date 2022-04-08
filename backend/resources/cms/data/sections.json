@@ -2,56 +2,48 @@
     {
         "id": "title",
         "short_name": "kalafior.site",
-        "long_name": "To jest pe\u0142na nazwa",
+        "long_name": "strona tytu\u0142owa",
         "show_on_slide": true,
         "fill_options": "None",
-        "description": "witaj na mojej stronie"
+        "description": "Witaj na mojej stronie."
     },
     {
         "id": "python",
         "short_name": "Python",
-        "long_name": "python projekty - moje projekty pytnonowe.",
+        "long_name": "moje projekty w j\u0119zyku python",
         "show_on_slide": true,
         "show_on_menu": true,
         "fill_options": "Collection",
         "collection_options": "python",
-        "description": "zrealizowane prze mnie projekty pytonowe. Co\u015b tutaj jest napisane jeszcze."
+        "description": "Zrealizowane przeze mnie proste projekty, napisane w j\u0119zyku python."
     },
     {
         "id": "games",
         "short_name": "Gry",
-        "long_name": "gry projekty",
+        "long_name": "projekty - gry",
         "show_on_slide": true,
         "show_on_menu": true,
         "fill_options": "Collection",
         "collection_options": "games",
-        "description": "R\u00f3\u017ane gierki i tak dalej"
-    },
-    {
-        "id": "other",
-        "short_name": "Inne",
-        "long_name": "Inne informacje",
-        "show_on_slide": true,
-        "show_on_menu": true,
-        "fill_options": "HTML_part",
-        "html_options": "html_fragment_1",
-        "description": "Inne informacje"
+        "description": "R\u00f3\u017cne gry."
     },
     {
         "id": "about",
         "short_name": "O mnie",
-        "long_name": "O autorze strony",
+        "long_name": "o autorze strony",
         "show_on_slide": true,
         "show_on_menu": true,
-        "fill_options": "None",
-        "description": "R\u00f3\u017cne informacje o autorze strony. Dodatkowe zdanie."
+        "fill_options": "HTML_part",
+        "html_options": "empty_page",
+        "description": "R\u00f3\u017cne informacje o autorze strony"
     },
     {
-        "id": "new_section",
-        "short_name": "new section skr\u00f3cona",
-        "long_name": "new section d\u0142uga",
-        "show_on_slide": true,
-        "fill_options": "None",
-        "description": "To jest nowa sekcja."
+        "id": "inne",
+        "short_name": "Inne",
+        "long_name": "Inne",
+        "show_on_menu": true,
+        "fill_options": "HTML_part",
+        "html_options": "empty_page",
+        "description": "Inne, co\u015b tu jeszcze b\u0119dzie."
     }
 ]

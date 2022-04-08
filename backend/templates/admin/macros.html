@@ -56,9 +56,16 @@
     <label for="{{name}}" class="form-label">{{label}}</label>
     <select name="{{name}}" id="{{name}}" class="form-input">
         {% for value in values_list: %}
-        <option value="{{value['id']}}" {% if value['id']==selected_value %} selected {% endif %}>
-            {{value['description']}}
-        </option>
+
+        {% if value['id']==selected_value %}
+           <option value="{{value['id']}}" selected >
+                {{value['description']}}
+           </option>
+        {% else%}
+            <option value="{{value['id']}}" >
+                {{value['description']}}
+            </option>
+        {% endif %}
         {% endfor %}
     </select>
 

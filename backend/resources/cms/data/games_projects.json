@@ -1,14 +1,8 @@
 [
     {
-        "id": "test_game",
-        "name": "nazwa co\u015btam",
-        "description": "jaki\u015b opis",
-        "link": "http://onet.pl"
-    },
-    {
-        "id": "gra_2",
-        "name": "test_project",
-        "description": "to jest testowy opis",
-        "link": "http://onet.pl"
+        "id": "clicker",
+        "name": "Clicker",
+        "description": "Prosty klon cookie clikera.",
+        "link": "https://marcinrg.github.io/Clicker/"
     }
 ]

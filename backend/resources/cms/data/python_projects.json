@@ -1,27 +1,25 @@
 [
     {
         "id": "pass_generator",
-        "name": "genrator hase\u0142",
-        "description": "Opis projektu",
-        "image": "cats.jpg",
+        "name": "generator hase\u0142",
         "link": "http://kalafior.site/pass_generator",
+        "description": "Generator hase\u0142. ",
         "tags": [
-            "python",
-            "flask",
-            "javascript"
-        ]
+            "REST",
+            "javascript",
+            "python"
+        ],
+        "image": "pass.jpg"
     },
     {
-        "id": "l;l;l;'l",
-        "name": "l';l';'l;';l';l",
-        "link": "kl;k;lk;lk;lkl;",
-        "description": "k;lk;lk;lkl;;lk;l",
+        "id": "kubus_puchatek",
+        "name": "Kubu\u015b puchatek",
+        "link": "http://kalafior.site/kubus_puchatek",
+        "description": "Kubu\u015b puchatek",
         "tags": [
-            "dddd",
-            "ddddd",
-            "doeoeo",
-            "2222"
+            "python",
+            "javascript"
         ],
-        "image": "6707621.jpg"
+        "image": "kubus.jpg"
     }
 ]

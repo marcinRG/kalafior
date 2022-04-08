@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>kalafior.site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <script defer src="static/main/app.js"></script>
+    <link href="{{url_for('static', filename='/main/style.css')}}" rel="stylesheet">
+</head>
+<body class="app-body">
+<div class="main-slider">
+    <div class="container">
+        <div class="side-menu">
+            <ul class="links-pages">
+                <li class="list-element"><a href="#" class="admin-link">Panel administratora</a></li>
+                <li class="list-element hide-menu">◀</li>
+            </ul>
+            <ul class="list-slider">
+
+                {% for menu_item in menu_items:%}
+
+                <li class="page-link" data-name="{{menu_item['id']}}">{{menu_item['short_name']}}</li>
+
+                {% endfor %}
+
+            </ul>
+            <ul class="links-socials">
+                <li class="list-element">Github</li>
+                <li class="list-element">Discord</li>
+            </ul>
+        </div>
+        <main class="main-app">
+            <div class="content">
+                <header class="app-header">
+                    <div class="logo-content">
+                        <p class="letter">K</p>
+                        <div class="text">
+                            <span>moja</span>
+                            <span>strona</span>
+                            <span>w sieci</span>
+                        </div>
+                    </div>
+                </header>
+
+                <ul class="app-navbar">
+                    <li><span class="main-menu-item menu-btn">Menu</span></li>
+                </ul>
+
+
+                <div class="slider">
+                    <div class="left">
+                        <p class="slider-text">Kalafior.site</p>
+                    </div>
+                    <div class="center">
+                        <p class="slider-text">Kalafior.site</p>
+                        <p class="description-text">Witaj!</p>
+                        <svg class="img-background" viewBox="0 0 950 950" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <clipPath id="text-bg">
+                                    <text x="0" y="0" class="filter-text">K</text>
+                                </clipPath>
+                            </defs>
+                            <image class="bgd-image" xlink:href="static/main/assets/k1_8ed4452d55bc2cefdee7.jpg"
+                                   width="950"
+                                   height="950" x="0"
+                                   y="0" clip-path="url(#text-bg)"></image>
+                        </svg>
+                    </div>
+                    <div class="right">
+                        <p class="slider-text">Kalafior.site</p>
+                    </div>
+                </div>
+
+                <p class="copyright"></p>
+                <p class="contact">Copyright &copy; 2022 All rights reserved</p>
+
+            </div>
+
+        </main>
+    </div>
+</div>
+<div class="loading-screen hide">
+    <p class="loading-msg">
+        Ładowanie ...
+    </p>
+</div>
+
+{% for section in sections:%}
+<div class="section {{section['id']}}">
+    <h2 class="page-section-title">
+        <span class="title">{{section['long_name']}}</span>
+        <span class="subtitle">{{section['description']}}</span>
+    </h2>
+    <div></div>
+</div>
+{% endfor%}
+
+
+<!--<div class="section python">-->
+<!--    <h2 class="section-title">Python</h2>-->
+<!--    <p>Wkrótce...</p>-->
+<!--</div>-->
+<!--<div class="section other">-->
+<!--    <h2 class="section-title">Inne</h2>-->
+<!--    <p>Wkrótce...</p>-->
+<!--</div>-->
+<!--<div class="section games">-->
+<!--    <h2 class="section-title">Gry</h2>-->
+<!--    <p>Wkrótce...</p>-->
+<!--</div>-->
+<!--<div class="section about">-->
+<!--    <h2 class="section-title">O mnie</h2>-->
+<!--    <p>Wkrótce...</p>-->
+<!--</div>-->
+</body>
+</html>

@@ -20,7 +20,7 @@
             <input type="hidden" value="games_form" id="games_form" name="form_type" style="display: none">
             <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id gry:</label>
-            <input type="text" id="id" name="id" value="{{page_content['id']}}" class="form-input">
+            <input type="text" id="id" name="id" value="{{ page_content['id'] }}" class="form-input" {% if mode=='edit' %} readonly {% endif %}>
 
             <label for="name" class="form-label">Nazwa:</label>
             <input type="text" id="name" name="name" value="{{page_content['name']}}" class="form-input">
@@ -39,4 +39,45 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+
+{%block list %}
+
+{% if page_content and page_content|length >0 %}
+
+{% for content in page_content: %}
+
+<div class="list-element">
+    <div class="element-content">
+        <div>
+            <div>
+                <div class="row">
+                    <label class="elem-label">Id elementu:</label><span class="elem-value">{{content['id']}}</span>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Nazwa:</label><span class="elem-value">{{content['name']}}</span>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Opis:</label><span class="elem-value">{{content['description']}}</span>
+                </div>
+                <div class="row">
+                    <label class="elem-label">Link:</label><a class="elem-value link" href="{{content['link']}}"
+                                                              target="_blank">{{content['link']}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="element-btn-wrapper">
+        <a href="{{url_for('admin',page=page, mode='edit',  id_elem=content['id'])}}"
+           class="button white">Edytuj</a>
+        <button class="button red" data-btn-type="remove-btn" data-btn-action="remove"
+                data-id="{{content['id']}}">Usuń
+        </button>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
 {% endblock %}

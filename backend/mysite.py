@@ -62,11 +62,11 @@ def get_list_content(page):
     page_content = []
     if page == 'sections':
         page_content = cms.get_page_sections()
-    if page == 'python':
+    elif page == 'python':
         page_content = cms.get_python_projects()
-    if page == 'games':
+    elif page == 'games':
         page_content = cms.get_games_projects()
-    if page == 'html_parts':
+    elif page == 'html_parts':
         page_content = cms.get_html_fragments()
     return page_content
 
@@ -131,31 +131,42 @@ def save_file(request_files, file_extensions):
             return filename
 
 
+def remove_element(id_elem, page):
+    if page == 'sections':
+        cms.remove_page_section(id_elem)
+    elif page == 'python':
+        cms.remove_project(id_elem)
+    elif page == 'games':
+        cms.remove_game(id_elem)
+    elif page == 'html_parts':
+        cms.remove_html_fragment(id_elem)
+
+
 def handle_get_request(request_args, page):
-    mode = 'list'
+    id_elem = request_args.get('id_elem')
+    mode = request_args.get('mode')
     data = []
+
     if request_args.get('logout') == 'ok':
         log_out()
         return redirect('/login')
 
-    if request_args.get('mode'):
-        mode = request_args.get('mode')
-
-    if mode == 'list':
+    if mode:
+        if mode == 'edit' and id_elem:
+            data = get_content_edit_element(page, id_elem)
+        if mode == 'remove':
+            if id_elem:
+                remove_element(id_elem, page)
+                return redirect('/admin/' + page)
+        if mode == 'new':
+            data = {}
+    else:
+        mode = 'list'
         data = get_list_content(page)
 
-    if mode == 'edit':
-        id_elem = request_args.get('id_elem')
-        data = get_content_edit_element(page, id_elem)
-        print(data)
-
-    if mode == 'remove':
-        if request_args.get('id_elem'):
-            cms.remove_page_section(request_args.get('id_elem'))
-        return redirect('/admin/' + page)
-
-    if mode == 'new':
-        data = {}
+    print('nazwy kolekcji')
+    print(cms.get_collections_names())
+    print(cms.get_fill_types())
 
     return render_template(get_page_address(page), page_content=data,
                            sections=cms.get_section_names(), fill_types=cms.get_fill_types(),
@@ -163,23 +174,14 @@ def handle_get_request(request_args, page):
                            page=page, user_data=get_session_data(), mode=mode)
 
 
-def edit_data():
-    pass
-
-
 @app.route("/admin/<page>", methods=['GET', 'POST', 'OPTIONS'])
 def admin(page):
-    get_request = request.args.to_dict()
-    post_request = request.form.to_dict()
-    request_files = request.files
-
     if is_user_logged_in():
+        get_request = request.args.to_dict()
+        post_request = request.form.to_dict()
+        request_files = request.files
         if request.method == 'POST':
             handle_post_request(post_request, request_files, page)
-
-        if request.method == 'GET':
-            print('get request')
-
         return handle_get_request(get_request, page)
     else:
         return redirect('/login')
@@ -187,7 +189,7 @@ def admin(page):
 
 @app.route("/kubus_puchatek")
 def puchatek():
-    return render_template('puchalke.html')
+    return render_template('puchatek/puchalke.html')
 
 
 @app.route("/kubus_puchatek/data")
@@ -214,22 +216,14 @@ def password_data():
 
 @app.route("/pass_generator")
 def pass_generator():
-    return render_template('pass_generator.html')
+    return render_template('pass_genrator/pass_generator.html')
 
 
-@app.route("/test", methods=['POST', 'GET', 'OPTIONS'])
-def test_page():
-    if request.method == 'POST':
-        if 'file' not in request.files:
-            return redirect(request.url)
-        file = request.files['file']
-        if file.filename == '':
-            return redirect(request.url)
-        if file and allowed_file(file.filename, ALLOWED_EXTENSIONS):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(request.url)
-    return render_template('test.html')
+@app.route("/", methods=['POST', 'GET', 'OPTIONS'])
+def main():
+    menu_items = [element for element in cms.get_page_sections() if element.get('show_on_menu') is not None]
+    sections = cms.get_page_sections()
+    return render_template('main/index.html', menu_items=menu_items, sections=sections)
 
 
 if __name__ == '__main__':
