@@ -16,7 +16,7 @@ module.exports = merge(common, {
     output: {
         clean: true,
         path: path.join(__dirname, path.join(outPath, staticPath)),
-        filename: '[name].[fullhash].js',
+        filename: '[name].js',
         assetModuleFilename: 'assets/[name]_[hash][ext]'
     },
     optimization: {

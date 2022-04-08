@@ -4,18 +4,27 @@
 
 
 .section {
-  display: none;
+  //display: none;
   background-color: white;
   min-height: 100vh;
 
   .section-title {
     text-align: center;
     font-weight: 200;
-    font-size: 30px;
+    font-size: 20px;
     text-transform: uppercase;
-    padding: 20px 0;
+    padding: 30px 0;
   }
 
+}
+
+.admin-link {
+   text-decoration: none;
+   color: black;
+   font-weight: normal;
+   &:hover {
+     color: green;
+   }
 }
 
 .main-slider {
@@ -347,6 +356,40 @@
   //transform: translateY(778px) translateX(160px);
   font-weight: bold;
   transform: translateY(952px) translateX(0);
+}
+
+.page-section-title {
+  background-color: #33691e;
+  color: white;
+  padding-top: 30px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 32px;
+  padding-bottom: 30px;
+}
+
+.subtitle {
+  font-weight: lighter;
+  font-size: 18px;
+  text-align: center;
+  display: block;
+  letter-spacing: normal;
+  text-transform: none;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 20px;
+
+  &::after {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    content: '';
+    width: 20%;
+    border-top: 3px solid white;
+    transform: translateX(-50%);
+  }
 }
 
 .slider-text-opacity {

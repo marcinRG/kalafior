@@ -41,7 +41,7 @@ export class PopUpWindow {
     }
 
     hide() {
-        window.removeEventListener('scroll',this.showInfoAtCurrentScroll);
+        window.removeEventListener('scroll', this.showInfoAtCurrentScroll);
         this.wrapper.style.display = 'none';
     }
 
@@ -64,19 +64,18 @@ export class PopUpWindow {
     }
 
 
-
     showPopUpWindow(title, message, buttons, func) {
         this.setWindowTitle(title);
         this.setMessage(message);
         this.show();
         this.showInfoAtCurrentScroll();
         this.createButtons(buttons, func);
-        window.addEventListener('scroll',this.showInfoAtCurrentScroll);
+        window.addEventListener('scroll', this.showInfoAtCurrentScroll);
     }
 }
 
 export function getButtonClasses(buttonValue) {
-    let className = `button ${ButtonValues[buttonValue]}`;
+    let className = `button ${buttonValue}`;
     switch (buttonValue) {
         case ButtonValues.OK: {
             return `${className} green`

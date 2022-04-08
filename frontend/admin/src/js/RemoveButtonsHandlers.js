@@ -11,7 +11,7 @@ export class RemoveButtonsHandlers {
             const id = btn.getAttribute('data-id');
             const func = createRemoveData(btn);
             btn.addEventListener('click', () => {
-                this.popUpWindow.showPopUpWindow('Uwaga! Usuwanie elementu', 'Czy chcesz usunąć element: ' + id + ' z bazy danych?' , [
+                this.popUpWindow.showPopUpWindow('Uwaga! Usuwanie elementu', 'Czy chcesz usunąć element: ' + id + ' z bazy danych?', [
                     {
                         title: 'Usuń',
                         type: ButtonValues.REMOVE
@@ -29,9 +29,9 @@ export function createRemoveData(button) {
     const id = button.getAttribute('data-id');
     const action = button.getAttribute('data-btn-action');
     const adr = window.location.pathname;
+
     const func = (buttonType) => {
         if (buttonType === ButtonValues.REMOVE) {
-            console.log('remove');
             window.location.replace(`${adr}?mode=${action}&id_elem=${id}`);
 
         }
