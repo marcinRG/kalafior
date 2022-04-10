@@ -1,0 +1,86 @@
+{% macro create_subpage_content(section, html_parts,games,projects) -%}
+        {{ create_html_part(section,html_parts)}}
+        {{ create_games_collection(section, games)}}
+        {{ create_projects_collection(section, projects)}}
+{%- endmacro %}
+
+{% macro create_html_part(section, html_parts) -%}
+  {% if section['fill_options'] == 'HTML_part' %}
+
+      {% for html_part in html_parts: %}
+            {% if section['html_options'] is defined %}
+
+                <div class="section-content">
+                    {{html_part['content']|safe}}
+                </div>
+
+            {% endif%}
+      {% endfor %}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro create_games_collection(section, games) -%}
+    {% if section['fill_options'] == 'Collection' %}
+        {% if section['collection_options'] is defined and section['collection_options']=='games' %}
+            <div class="game-section-content">
+            {% for game in games:%}
+                <div class="game-container">
+                    <p class="form-title">{{game['name']}}</p>
+                    <div class="inside-container">
+                        <label class="game-label">Link:</label>
+                        <p class="text-field"><a href="{{game['link']}}" target="_blank">{{game['link']}}</a></p>
+                        <label class="game-label">Opis:</label>
+                        <p class="text-field">
+                            {{game['description']}}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endif%}
+{%- endmacro %}
+
+
+{% macro create_projects_collection(section, projects) -%}
+    {% if section['fill_options'] == 'Collection' %}
+        {% if section['collection_options'] is defined and section['collection_options']=='python' %}
+            <div class="project-section-content">
+                {% for project in projects:%}
+                    <div class="project-container">
+                        <img src="{{url_for('static', filename=config['APP_IMAGES']+project['image'])}}" class="project-image"/>
+                        <div class="project-description">
+                            <div>
+                                <p class="project-field title">{{project['name']}}</p>
+                                <a href="{{project['link']}}" class="project-field" target="_blank">{{project['link']}}</a>
+                                <p class="project-field">
+                                    {{project['description']}}
+                                </p>
+                            </div>
+
+                            <ul class="project-tags">
+                                {%for tag in project['tags']:%}
+                                    <li>{{tag}}</li>
+                                {%endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif%}
+{%- endmacro %}
+
+
+{%- macro create_section_class(section) -%}
+    {%- if section['fill_options'] == 'Collection' -%}
+        {%- if section['collection_options'] is defined and section['collection_options']=='games' -%}
+           section {{section['id']}}
+        {%- elif section['collection_options'] is defined and section['collection_options']=='python' -%}
+            section {{section['id']}} odd
+        {%- endif-%}
+    {%- else -%}
+       section {{section['id']}} odd
+    {%- endif-%}
+{%- endmacro -%}

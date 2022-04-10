@@ -82,12 +82,12 @@ def get_content_edit_element(page, id_element, cms):
     return data
 
 
-def handle_post_request(request_args, request_files, page, cms):
+def handle_post_request(request_args, request_files, page, cms, file_extensions, path):
     if page == 'sections' and request_args.get('form_type') == 'sections_form':
         edit_or_add_new(request_args, page, cms.edit_page_section, cms.add_page_section)
 
     if page == 'python' and request_args.get('form_type') == 'python_form':
-        file_name = save_file(request_files, ALLOWED_EXTENSIONS)
+        file_name = save_file(request_files, file_extensions, path)
         if file_name:
             request_args['image'] = file_name
         edit_or_add_new(request_args, page, cms.edit_project, cms.add_project)
@@ -107,3 +107,14 @@ def save_file(request_files, file_extensions, path):
             filename = secure_filename(file.filename)
             file.save(os.path.join(path, filename))
             return filename
+
+
+def remove_element(id_elem, page, cms):
+    if page == 'sections':
+        cms.remove_page_section(id_elem)
+    elif page == 'python':
+        cms.remove_project(id_elem)
+    elif page == 'games':
+        cms.remove_game(id_elem)
+    elif page == 'html_parts':
+        cms.remove_html_fragment(id_elem)

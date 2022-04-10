@@ -1,3 +1,4 @@
+{% import 'main/macros.html' as macros %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
                                     <text x="0" y="0" class="filter-text">K</text>
                                 </clipPath>
                             </defs>
-                            <image class="bgd-image" xlink:href="static/main/assets/k1_8ed4452d55bc2cefdee7.jpg"
+                            <image class="bgd-image" xlink:href="static/main/assets/k1.jpg"
                                    width="950"
                                    height="950" x="0"
                                    y="0" clip-path="url(#text-bg)"></image>
@@ -90,31 +91,18 @@
 </div>
 
 {% for section in sections:%}
-<div class="section {{section['id']}}">
+<div class="{{ macros.create_section_class(section) }}">
     <h2 class="page-section-title">
         <span class="title">{{section['long_name']}}</span>
         <span class="subtitle">{{section['description']}}</span>
     </h2>
-    <div></div>
+
+    {{macros.create_subpage_content(section, html_parts, games, projects)}}
+
+    <div class="back-wrapper"><span class="up">do góry </span></div>
 </div>
 {% endfor%}
 
 
-<!--<div class="section python">-->
-<!--    <h2 class="section-title">Python</h2>-->
-<!--    <p>Wkrótce...</p>-->
-<!--</div>-->
-<!--<div class="section other">-->
-<!--    <h2 class="section-title">Inne</h2>-->
-<!--    <p>Wkrótce...</p>-->
-<!--</div>-->
-<!--<div class="section games">-->
-<!--    <h2 class="section-title">Gry</h2>-->
-<!--    <p>Wkrótce...</p>-->
-<!--</div>-->
-<!--<div class="section about">-->
-<!--    <h2 class="section-title">O mnie</h2>-->
-<!--    <p>Wkrótce...</p>-->
-<!--</div>-->
 </body>
 </html>

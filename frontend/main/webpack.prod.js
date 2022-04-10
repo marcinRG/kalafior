@@ -17,7 +17,7 @@ module.exports = merge(common, {
         clean: true,
         path: path.join(__dirname, path.join(outPath, staticPath)),
         filename: '[name].js',
-        assetModuleFilename: 'assets/[name]_[hash][ext]'
+        assetModuleFilename: 'assets/[name][ext]'
     },
     optimization: {
         minimize: true

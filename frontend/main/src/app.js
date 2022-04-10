@@ -14,10 +14,12 @@ import img07 from './images/letter-backgrounds/k7.jpg';
 import img08 from './images/letter-backgrounds/k8.jpg';
 
 import {loadImages} from './js/images/background-images';
+import {UpArrows} from './js/UpArrows/UpArrows';
 
 const imageLinks = [img01, img02, img03, img04, img05, img06, img07, img08];
 const loadMessage = document.querySelector('.loading-screen .loading-msg');
 const loadScreen = document.querySelector('.loading-screen');
+const upArrows = new UpArrows();
 
 loadImages(imageLinks, loadMessage).then((images) => {
     loadScreen.classList.add('hide');

@@ -15,4 +15,4 @@ def password_data():
 
 @password_generator.route("/pass_generator")
 def pass_generator():
-    return render_template('pass_generator.html')
+    return render_template('pass_generator/pass_generator.html')

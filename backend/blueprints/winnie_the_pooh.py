@@ -6,7 +6,7 @@ kubus = Blueprint('kubus', __name__)
 
 @kubus.route("/kubus_puchatek")
 def puchatek():
-    return render_template('puchalke.html')
+    return render_template('puchatek/puchalke.html')
 
 
 @kubus.route("/kubus_puchatek/data")
