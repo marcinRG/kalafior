@@ -1,0 +1,347 @@
+@import "variables";
+@import "utils/material-shadows";
+
+.section {
+
+  .section-content {
+    color: white;
+    text-align: center;
+  }
+
+  .up {
+    color: white;
+  }
+
+  &.odd {
+    background-color: white;
+
+    .section-content {
+      color: black;
+    }
+
+    .page-section-title {
+      color: black;
+    }
+
+    .subtitle {
+      &::after {
+        border-top: 2px solid green;
+      }
+    }
+
+    .up {
+      color: black;
+    }
+
+  }
+
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  background-color: green;
+
+  .page-section-title {
+    color: white;
+    padding-top: 70px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 30px;
+    padding-bottom: 30px;
+  }
+
+  .subtitle {
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    letter-spacing: normal;
+    text-transform: none;
+    position: relative;
+    padding: 5px 10px 10px 10px;
+
+
+    &::after {
+      display: none;
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          display: block;
+          position: absolute;
+          top: 35px;
+          left: 50%;
+          content: '';
+          width: 50px;
+          border-top: 2px solid white;
+          transform: translateX(-50%);
+        }
+      }
+
+    }
+  }
+
+  .back-wrapper {
+    padding: 0 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .up {
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+
+    &:after {
+      content: '▲';
+    }
+  }
+
+}
+
+.game-container {
+  @include box-shadow-helper(2);
+  background-color: #13a113;
+  width: 95%;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      width: 40%;
+    }
+  }
+
+  @media screen {
+    @media (min-width: $media-br-2) {
+      width: 25%;
+    }
+  }
+
+  .form-title {
+    padding: 10px 10px;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .inside-container {
+    padding: 10px 10px 40px 10px;
+  }
+
+  .game-label {
+    display: block;
+    font-weight: bold;
+    width: 100%;
+    color: white;
+    font-size: 10px;
+    padding: 20px 0 5px 0;
+  }
+
+  .text-field {
+    width: 100%;
+    padding: 8px;
+    background-color: rgba(236, 231, 231, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    outline: 0;
+    color: white;
+    text-align: justify;
+
+    a {
+      color: white;
+    }
+
+  }
+
+  .button-wrapper {
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    flex-flow: row-reverse;
+  }
+
+}
+
+.button {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 12px 25px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  text-decoration: none;
+
+  &.selected {
+    color: white;
+    background-color: green;
+  }
+
+  &:hover {
+    background-color: #0f940f;
+    color: white
+  }
+}
+
+.tag-buttons {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.project-section-content {
+  width: 95%;
+  display: flex;
+  margin: 40px auto;
+  column-gap: 30px;
+  row-gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      width: 80%;
+    }
+  }
+
+}
+
+.project-container {
+  @include box-shadow-helper(2);
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  background-color: whitesmoke;
+  padding: 10px;
+  column-gap: 5px;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      width: 70%;
+      flex-direction: row;
+    }
+
+    @media (min-width: $media-br-3) {
+      width: 45%;
+      flex-direction: row;
+    }
+  }
+
+
+  .project-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // border: 1px solid rgba(10, 8, 8, 0.1);
+  }
+
+  .project-field {
+    display: block;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(10, 8, 8, 0.1);
+    width: 100%;
+    text-align: justify;
+
+    &.title {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+  }
+
+  .project-tags {
+    list-style-type: none;
+    padding: 10px;
+    text-align: right;
+
+    &:before {
+      content: 'Tagi:';
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    li {
+      display: inline-block;
+      font-size: 10px;
+
+      &:after {
+        content: ',';
+      }
+
+    }
+  }
+
+  .project-image {
+    display: block;
+    height: 200px;
+    width: auto;
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid rgba(10, 8, 8, 0.2);
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        width: 250px;
+      }
+    }
+
+  }
+
+}
+
+.game-section-content {
+  width: 90%;
+  display: flex;
+  margin: 40px auto;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      width: 80%;
+      column-gap: 40px;
+      row-gap: 40px;
+    }
+  }
+
+
+}
+
+.section-content {
+
+  margin: 20px auto;
+  width: 90%;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: justify;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      padding: 30px;
+      margin: 50px auto;
+      width: 50%;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+}

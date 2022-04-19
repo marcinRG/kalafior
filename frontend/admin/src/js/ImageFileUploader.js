@@ -4,9 +4,8 @@ export class ImageFileUploader {
         this.fileName = document.querySelector('.image-uploader .file-name');
         this.uploadButton = document.querySelector('.image-uploader .small-button');
         this.thumbnailImage = document.querySelector('.image-uploader .uploaded-image');
-        if (this.fileName) {
-            this.fileName.value = '';
-        }
+        this.fileName.value = '';
+        this.fileInput.value = '';
         this.addFileUploadHandler();
         this.addButtonHandler();
     }

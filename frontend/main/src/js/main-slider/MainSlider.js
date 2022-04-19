@@ -1,10 +1,11 @@
 import {getIndexes} from '../utils/GetIndexes';
+import {scrollTo} from '../utils/Animations.utils';
 
 export class MainSlider {
-    constructor(settings, images) {
+    constructor(slides, images) {
         this.intervalID = null;
         this.i = 0;
-        this.slides = settings.slides;
+        this.slides = slides;
         this.delay = 15000;
         this.images = images;
         this.previousText = document.querySelector('.left  .slider-text');
@@ -22,14 +23,33 @@ export class MainSlider {
     }
 
     changeDescription() {
-        this.slideDescription.textContent = this.slides[this.i].long;
+
+        const currentElem = this.slides[this.i];
+        this.slideDescription.innerHTML = '';
+        let text = document.createElement('span');
+        text.classList.add('text-dsc');
+        text.textContent = currentElem.description;
+        this.slideDescription.appendChild(text);
+
+        if (currentElem.show_on_menu) {
+            let link = document.createElement('span');
+            link.classList.add('link-dsc');
+            link.textContent = 'zobacz więcej';
+            this.slideDescription.appendChild(link);
+
+            link.addEventListener('click', () => {
+                const selector = `.section.${currentElem.id}`;
+                const elem = document.querySelector(selector);
+                scrollTo(elem, 1000, 'easeOut');
+            });
+        }
     }
 
     changeSlidesTexts() {
         const {previous, current, next} = getIndexes(this.i, this.slides.length - 1);
-        this.previousText.textContent = this.slides[previous].title;
-        this.currentText.textContent = this.slides[current].title;
-        this.nextText.textContent = this.slides[next].title;
+        this.previousText.textContent = this.slides[previous].long_name;
+        this.currentText.textContent = this.slides[current].long_name;
+        this.nextText.textContent = this.slides[next].long_name;
     }
 
     run() {
@@ -42,8 +62,8 @@ export class MainSlider {
             this.previousText.addEventListener('webkitAnimationEnd', removeClass(this.previousText, 'slider-text-opacity'));
             this.slideDescription.addEventListener('webkitAnimationEnd', removeClass(this.slideDescription, 'slider-text-opacity'));
 
-            this.changeSlidesTexts();
             this.changeDescription();
+            this.changeSlidesTexts();
 
             this.i = this.i + 1;
             if (this.i >= this.slides.length) {

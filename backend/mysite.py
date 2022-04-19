@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 
 from blueprints.main_routes import main_routes
 from blueprints.pass_generator import password_generator
@@ -9,6 +9,8 @@ from cms.cms_settings_file import cms_settings_file, cms_images_folder
 from cms.cms_settings_file import cms_admin
 from utils.admin_page_functions import handle_post_request, get_page_address, get_list_content, \
     get_content_edit_element, remove_element
+from utils.crossdomain import crossdomain
+from utils.request_functions import allowed_file
 
 app = Flask(__name__)
 app.secret_key = 'NFcT&jCOn#ekRB~qyh9gSAso*l2+pXYUwDHt!PI5'
@@ -111,6 +113,24 @@ def main():
 
     return render_template('main/index.html', menu_items=menu_items, sections=menu_items, games=games,
                            projects=python_projects, html_parts=html_parts)
+
+
+@app.route("/app/slider/data", methods=['POST', 'GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_slider_data():
+    return jsonify(cms.get_page_sections())
+
+
+@app.route("/app/slider/images", methods=['POST', 'GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_slider_images():
+    images = []
+    path_img_dir = 'static/main/assets/'
+    images_directory = os.path.join(os.getcwd(), path_img_dir)
+    if os.path.exists(images_directory) and os.path.isdir(images_directory):
+        images = [path_img_dir + element for element in os.listdir(images_directory) if
+                  allowed_file(element, ALLOWED_EXTENSIONS)]
+    return jsonify(images)
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@ import {scrollTo} from '../utils/Animations.utils';
 import Velocity from 'velocity-animate';
 
 export class Menu {
-    constructor(settings) {
+    constructor() {
         this.menuBtn = document.querySelector('.main-menu-item.menu-btn');
         this.menuHideBtn = document.querySelector('.hide-menu');
         this.sideMenu = document.querySelector('.side-menu');
