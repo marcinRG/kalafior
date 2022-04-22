@@ -1,0 +1,89 @@
+@import "./common";
+@import "./variables";
+@import "./mixins";
+@import "utils/material-shadows";
+
+.error {
+  @include box-shadow-helper(2);
+  margin: 20px 5px;
+  padding: 10px;
+  max-width: 750px;
+  background-color: rgb(19, 161, 19);
+  border: 1px solid rgba(11, 79, 11, 0.3);
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      padding: 20px;
+      margin: 100px auto 20px;
+    }
+  }
+
+}
+
+.row {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  column-gap: 20px;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+    flex-direction: row;
+    }
+  }
+
+}
+
+.error-body {
+  background-color: green;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.error-code {
+  @include font-sagoe-ui;
+  font-weight: bold;
+  font-size: 100px;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(10, 9, 9, .4);
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      text-align: left;
+    }
+  }
+
+
+  .code {
+    font-size: 105px;
+    font-style: italic;
+    display: inline-block;
+  }
+
+}
+
+.error-description {
+  @include font-pt-sans;
+  font-size: 18px;
+  padding: 20px 10px;
+  line-height: 150%;
+  //text-shadow: 2px 2px 5px rgba(10, 9, 9, .4);
+  color: white;
+  text-align: justify;
+}
+
+.img-background {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+
+.link {
+  display: inline-block;
+  width: 100%;
+  color: white;
+  text-align: center;
+}

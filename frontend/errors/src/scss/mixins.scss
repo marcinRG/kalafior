@@ -1,0 +1,15 @@
+@mixin animation-mixin($animation-name, $animation-duration: 4s, $animation-timing-function: linear) {
+  animation-name: $animation-name;
+  animation-duration: $animation-duration;
+  animation-timing-function: $animation-timing-function;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+
+@mixin font-pt-sans {
+  font-family: "PT-Sans", sans-serif;
+}
+
+@mixin font-sagoe-ui {
+  font-family: "SegoeUI", sans-serif;
+}
