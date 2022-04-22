@@ -13,6 +13,7 @@ from cms.cms_settings_file import cms_admin
 from utils.admin_page_functions import handle_post_request, get_page_address, get_list_content, \
     get_content_edit_element, remove_element
 from utils.crossdomain import crossdomain
+from utils.is_not_empty import is_not_empty
 from utils.request_functions import allowed_file
 
 app = Flask(__name__)
@@ -55,9 +56,12 @@ def log_out():
 
 
 def handle_get_request(request_args, page):
+    page_address = get_page_address(page)
+    if not page_address:
+        return 'zła strona'
+
     id_elem = request_args.get('id_elem')
     mode = request_args.get('mode')
-    data = []
 
     if request_args.get('logout') == 'ok':
         log_out()
@@ -66,6 +70,8 @@ def handle_get_request(request_args, page):
     if mode:
         if mode == 'edit' and id_elem:
             data = get_content_edit_element(page, id_elem, cms)
+            if not data:
+                return 'brak danych'
         if mode == 'remove':
             if id_elem:
                 remove_element(id_elem, page, cms)
@@ -75,8 +81,10 @@ def handle_get_request(request_args, page):
     else:
         mode = 'list'
         data = get_list_content(page, cms)
+        if not data:
+            return 'brak danych'
 
-    return render_template(get_page_address(page), page_content=data,
+    return render_template(page_address, page_content=data,
                            sections=cms.get_section_names(), fill_types=cms.get_fill_types(),
                            collection_names=cms.get_collections_names(), html_parts_names=cms.get_html_fragments(),
                            page=page, user_data=get_session_data(), mode=mode)
@@ -129,7 +137,6 @@ def get_slider_data():
 @crossdomain(origin='*')
 def get_slider_images():
     # time.sleep(5)
-
     images = []
     path_img_dir = 'static/main/assets/'
     images_directory = os.path.join(os.getcwd(), path_img_dir)
@@ -137,6 +144,11 @@ def get_slider_images():
         images = [path_img_dir + element for element in os.listdir(images_directory) if
                   allowed_file(element, ALLOWED_EXTENSIONS)]
     return jsonify(images)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return 'error: Not found', 404
 
 
 if __name__ == '__main__':

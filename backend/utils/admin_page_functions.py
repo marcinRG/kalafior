@@ -2,6 +2,7 @@ import os
 
 from werkzeug.utils import secure_filename
 
+from utils.is_not_empty import is_not_empty
 from utils.request_functions import remove_from_dict, split_tags, change_string_2_bool, allowed_file
 
 
@@ -49,15 +50,17 @@ def get_page_address(page):
         'games': '/admin/games.html',
         'html_parts': 'admin/html_parts.html'
     }
-    page_adr = '/admin/sections.html'
-    selected_page = pages_address.get(page)
-    if selected_page:
-        page_adr = selected_page
-    return page_adr
+    # page_adr = '/admin/sections.html'
+    # selected_page = pages_address.get(page)
+    # if selected_page:
+    #     page_adr = selected_page
+    # return page_adr
+
+    return pages_address.get(page)
 
 
 def get_list_content(page, cms):
-    page_content = []
+    page_content = None
     if page == 'sections':
         page_content = cms.get_page_sections()
     elif page == 'python':
@@ -70,14 +73,13 @@ def get_list_content(page, cms):
 
 
 def get_content_edit_element(page, id_element, cms):
-    data = {}
     if page == 'sections':
         data = cms.get_page_section(id_element)
-    if page == 'python':
+    elif page == 'python':
         data = cms.get_python_project(id_element)
-    if page == 'games':
+    elif page == 'games':
         data = cms.get_game_project(id_element)
-    if page == 'html_parts':
+    elif page == 'html_parts':
         data = cms.get_html_fragment(id_element)
     return data
 
