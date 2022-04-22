@@ -8,6 +8,7 @@ export class MainSlider {
         this.slides = slides;
         this.delay = 15000;
         this.images = images;
+        this.imageContainer = document.querySelector('.img-background');
         this.previousText = document.querySelector('.left  .slider-text');
         this.currentText = document.querySelector('.center .slider-text');
         this.nextText = document.querySelector('.right .slider-text');
@@ -16,6 +17,7 @@ export class MainSlider {
     }
 
     setAnimationClasses() {
+        this.imageContainer.classList.add('image-show-animation');
         this.previousText.classList.add('slider-text-opacity');
         this.currentText.classList.add('slider-text-animation');
         this.nextText.classList.add('slider-text-opacity');
@@ -54,13 +56,13 @@ export class MainSlider {
 
     run() {
         this.intervalID = setInterval(() => {
-
             this.backgroundImage.setAttribute('xlink:href', this.images[this.i + 1].src);
             this.setAnimationClasses();
-            this.currentText.addEventListener('webkitAnimationEnd', removeClass(this.currentText, 'slider-text-animation'));
-            this.nextText.addEventListener('webkitAnimationEnd', removeClass(this.nextText, 'slider-text-opacity'));
-            this.previousText.addEventListener('webkitAnimationEnd', removeClass(this.previousText, 'slider-text-opacity'));
-            this.slideDescription.addEventListener('webkitAnimationEnd', removeClass(this.slideDescription, 'slider-text-opacity'));
+            this.currentText.addEventListener('animationend', removeClass(this.currentText, 'slider-text-animation'));
+            this.nextText.addEventListener('animationend', removeClass(this.nextText, 'slider-text-opacity'));
+            this.previousText.addEventListener('animationend', removeClass(this.previousText, 'slider-text-opacity'));
+            this.slideDescription.addEventListener('animationend', removeClass(this.slideDescription, 'slider-text-opacity'));
+            this.imageContainer.addEventListener('animationend', removeClass(this.imageContainer, 'image-show-animation'));
 
             this.changeDescription();
             this.changeSlidesTexts();

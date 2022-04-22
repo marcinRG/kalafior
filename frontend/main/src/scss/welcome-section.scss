@@ -1,3 +1,4 @@
+@import "variables";
 
 .main-slider {
   width: 100%;
@@ -8,8 +9,14 @@
   .container {
     position: absolute;
     width: 100%;
-    left: -30%;
     top: 0;
+    left: -$menu-width-small;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        left: -$menu-width;
+      }
+    }
   }
 
   .content {
@@ -28,17 +35,26 @@
   }
 
   .side-menu {
-    width: 30%;
+
+    margin: 0;
+    width: $menu-width-small;
     height: 100vh;
     padding: 40px;
     display: block;
     position: absolute;
     top: 0;
     left: 0;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        width: $menu-width;
+
+      }
+    }
+
   }
 
 }
-
 
 .img-background {
   display: block;

@@ -30,6 +30,7 @@
 
 
 .main-app {
+
   display: block;
   background-color: green;
   color: white;
@@ -37,7 +38,16 @@
   width: 100%;
   position: absolute;
   top: 0;
-  left: 30%;
+  left: $menu-width-small;
+
+  @media screen {
+    @media (min-width: $media-br-2) {
+
+      left: $menu-width;
+    }
+  }
+
+
 
 
 }
@@ -60,11 +70,12 @@
     color: green;
 
     &::before {
+      display: block;
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 42%;
+      left: 55%;
       color: white;
-      transform: translateY(-25%) translateX(30%);
+      //transform: translateY(-25%) translateX(30%);
       font-size: 15px;
       content: "✕";
     }
@@ -86,9 +97,15 @@
 
   .page-link {
     display: list-item;
-    font-size: 60px;
+    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
+
+    @media screen {
+      @media (min-width: $media-br-1) {
+        font-size: 60px;
+      }
+    }
 
     &:hover {
       color: green;
@@ -242,6 +259,7 @@
       text-shadow: 2px 2px 5px rgba(10, 9, 9, .4);
       transform: translateY(-50%);
       transform-origin: 0 0;
+      z-index: 400;
       position: absolute;
 
       @media screen {
@@ -256,6 +274,7 @@
 
   .description-text {
     @include font-pt-sans;
+    z-index: 350;
     position: absolute;
     text-align: center;
     top: 55%;

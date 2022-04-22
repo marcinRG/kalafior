@@ -4,9 +4,11 @@ import {MainSlider} from './js/main-slider/MainSlider';
 import {AnimatedLetter} from './js/animated-letter/AnimatedLetter';
 import {loadImages} from './js/images/background-images';
 import {UpArrows} from './js/UpArrows/UpArrows';
+import {TagSelector} from "./js/tag-selector/TagSelector";
 
 const loadMessage = document.querySelector('.loading-screen .loading-msg');
 const loadScreen = document.querySelector('.loading-screen');
+const appContent = document.querySelector('.app-content');
 
 
 let imagesLinks = [];
@@ -33,6 +35,7 @@ function getDataFromServer(serverPath) {
 
 const menu = new Menu();
 const upArrows = new UpArrows();
+const tagSelector = new TagSelector();
 
 getDataFromServer(imagesPath).then(data => {
     for (const img of data) {
@@ -45,6 +48,7 @@ getDataFromServer(imagesPath).then(data => {
 }).then(() => {
     return loadImages(imagesLinks, loadMessage).then((images) => {
         loadScreen.classList.add('hide');
+        appContent.classList.remove('hide');
         const mainSlider = new MainSlider(slides, images);
         mainSlider.run();
         const animatedLetter = new AnimatedLetter();
@@ -53,3 +57,5 @@ getDataFromServer(imagesPath).then(data => {
 }).catch((err) => {
     console.log(err.message);
 });
+
+

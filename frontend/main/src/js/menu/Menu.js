@@ -17,6 +17,11 @@ export class Menu {
             })
         });
 
+        window.addEventListener('resize', () => {
+            let width = this.sideMenu.getBoundingClientRect().width;
+            Velocity(this.slider, {left: -width}, {duration: 10, easing: 'easeOut'});
+        });
+
 
         this.menuBtn.addEventListener('click', () => {
             Velocity(this.slider, {left: 0}, {duration: 500, easing: 'easeOut'});

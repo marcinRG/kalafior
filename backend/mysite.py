@@ -1,8 +1,11 @@
 import os
+import time
+
 from flask import Flask, render_template, request, redirect, session, jsonify
 
 from blueprints.main_routes import main_routes
 from blueprints.pass_generator import password_generator
+from blueprints.test_file import test_app
 from blueprints.winnie_the_pooh import kubus
 from cms.CMS import CMS
 from cms.cms_settings_file import cms_settings_file, cms_images_folder
@@ -22,6 +25,7 @@ app.config['UPLOAD_FOLDER'] = cms_images_folder
 app.register_blueprint(kubus)
 app.register_blueprint(password_generator)
 app.register_blueprint(main_routes)
+app.register_blueprint(test_app)
 
 cms = CMS(os.getcwd(), cms_admin, cms_settings_file)
 
@@ -124,6 +128,8 @@ def get_slider_data():
 @app.route("/app/slider/images", methods=['POST', 'GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_slider_images():
+    # time.sleep(5)
+
     images = []
     path_img_dir = 'static/main/assets/'
     images_directory = os.path.join(os.getcwd(), path_img_dir)
