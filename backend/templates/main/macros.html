@@ -46,6 +46,9 @@
 {% macro create_projects_collection(section, projects) -%}
     {% if section['fill_options'] == 'Collection' %}
         {% if section['collection_options'] is defined and section['collection_options']=='python' %}
+            <div class="tag-buttons">
+                <button class="button selected">Wszystkie</button>
+            </div>
             <div class="project-section-content">
                 {% for project in projects:%}
                     <div class="project-container">

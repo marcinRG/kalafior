@@ -12,97 +12,99 @@
     <link href="{{url_for('static', filename='/main/style.css')}}" rel="stylesheet">
 </head>
 <body class="app-body">
-<div class="main-slider">
-    <div class="container">
-        <div class="side-menu">
-            <ul class="links-pages">
-                <li class="list-element"><a href="#" class="admin-link">Panel administratora</a></li>
-                <li class="list-element hide-menu">◀</li>
-            </ul>
-            <ul class="list-slider">
 
-                {% for menu_item in menu_items:%}
-
-                <li class="page-link" data-name="{{menu_item['id']}}">{{menu_item['short_name']}}</li>
-
-                {% endfor %}
-
-            </ul>
-            <ul class="links-socials">
-                <li class="list-element">Github</li>
-                <li class="list-element">Discord</li>
-            </ul>
-        </div>
-        <main class="main-app">
-            <div class="content">
-                <header class="app-header">
-                    <div class="logo-content">
-                        <p class="letter">K</p>
-                        <div class="text">
-                            <span>moja</span>
-                            <span>strona</span>
-                            <span>w sieci</span>
-                        </div>
-                    </div>
-                </header>
-
-                <ul class="app-navbar">
-                    <li><span class="main-menu-item menu-btn">Menu</span></li>
-                </ul>
-
-
-                <div class="slider">
-                    <div class="left">
-                        <p class="slider-text">Kalafior.site</p>
-                    </div>
-                    <div class="center">
-                        <p class="slider-text">Kalafior.site</p>
-                        <p class="description-text">Witaj!</p>
-                        <svg class="img-background" viewBox="0 0 950 950" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <defs>
-                                <clipPath id="text-bg">
-                                    <text x="0" y="0" class="filter-text">K</text>
-                                </clipPath>
-                            </defs>
-                            <image class="bgd-image" xlink:href="static/main/assets/k1.jpg"
-                                   width="950"
-                                   height="950" x="0"
-                                   y="0" clip-path="url(#text-bg)"></image>
-                        </svg>
-                    </div>
-                    <div class="right">
-                        <p class="slider-text">Kalafior.site</p>
-                    </div>
-                </div>
-
-                <p class="copyright"></p>
-                <p class="contact">Copyright &copy; 2022 All rights reserved</p>
-
-            </div>
-
-        </main>
-    </div>
-</div>
-<div class="loading-screen hide">
+<div class="loading-screen">
     <p class="loading-msg">
         Ładowanie ...
     </p>
 </div>
 
-{% for section in sections:%}
-<div class="{{ macros.create_section_class(section) }}">
-    <h2 class="page-section-title">
-        <span class="title">{{section['long_name']}}</span>
-        <span class="subtitle">{{section['description']}}</span>
-    </h2>
+<div class="app-content hide">
+    <div class="main-slider">
+        <div class="container">
+            <div class="side-menu">
+                <ul class="links-pages">
+                    <li class="list-element"><a href="#" class="admin-link">Panel administratora</a></li>
+                    <li class="list-element hide-menu">◀</li>
+                </ul>
+                <ul class="list-slider">
 
-    {{macros.create_subpage_content(section, html_parts, games, projects)}}
+                    {% for menu_item in menu_items:%}
 
-    <div class="back-wrapper"><span class="up">do góry </span></div>
+                    <li class="page-link" data-name="{{menu_item['id']}}">{{menu_item['short_name']}}</li>
+
+                    {% endfor %}
+
+                </ul>
+                <ul class="links-socials">
+                    <li class="list-element">Github</li>
+                    <li class="list-element">Discord</li>
+                </ul>
+            </div>
+            <main class="main-app">
+                <div class="content">
+                    <header class="app-header">
+                        <div class="logo-content">
+                            <p class="letter">K</p>
+                            <div class="text">
+                                <span>moja</span>
+                                <span>strona</span>
+                                <span>w sieci</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <ul class="app-navbar">
+                        <li><span class="main-menu-item menu-btn">Menu</span></li>
+                    </ul>
+
+
+                    <div class="slider">
+                        <div class="left">
+                            <p class="slider-text">Kalafior.site</p>
+                        </div>
+                        <div class="center">
+                            <p class="slider-text">Kalafior.site</p>
+                            <p class="description-text">Witaj!</p>
+                            <svg class="img-background" viewBox="0 0 950 950" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs>
+                                    <clipPath id="text-bg">
+                                        <text x="0" y="0" class="filter-text">K</text>
+                                    </clipPath>
+                                </defs>
+                                <image class="bgd-image" xlink:href="static/main/assets/k1.jpg"
+                                       width="950"
+                                       height="950" x="0"
+                                       y="0" clip-path="url(#text-bg)"></image>
+                            </svg>
+                        </div>
+                        <div class="right">
+                            <p class="slider-text">Kalafior.site</p>
+                        </div>
+                    </div>
+
+                    <p class="copyright"></p>
+                    <p class="contact">Copyright &copy; 2022 All rights reserved</p>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+    {% for section in sections:%}
+    <div class="{{ macros.create_section_class(section) }}">
+        <h2 class="page-section-title">
+            <span class="title">{{section['long_name']}}</span>
+            <span class="subtitle">{{section['description']}}</span>
+        </h2>
+
+        {{macros.create_subpage_content(section, html_parts, games, projects)}}
+
+        <div class="back-wrapper"><span class="up">do góry </span></div>
+    </div>
+    {% endfor%}
+
 </div>
-{% endfor%}
-
-
 </body>
 </html>

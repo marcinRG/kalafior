@@ -1,5 +1,4 @@
 import os
-import time
 
 from flask import Flask, render_template, request, redirect, session, jsonify
 
@@ -13,7 +12,6 @@ from cms.cms_settings_file import cms_admin
 from utils.admin_page_functions import handle_post_request, get_page_address, get_list_content, \
     get_content_edit_element, remove_element
 from utils.crossdomain import crossdomain
-from utils.is_not_empty import is_not_empty
 from utils.request_functions import allowed_file
 
 app = Flask(__name__)
@@ -58,7 +56,9 @@ def log_out():
 def handle_get_request(request_args, page):
     page_address = get_page_address(page)
     if not page_address:
-        return 'zła strona'
+        return render_template('error/error.html', error_code='',
+                               error_description='Podstrona, którą próbujesz się dostać nie isnieje',
+                               link='/login')
 
     id_elem = request_args.get('id_elem')
     mode = request_args.get('mode')
@@ -71,7 +71,9 @@ def handle_get_request(request_args, page):
         if mode == 'edit' and id_elem:
             data = get_content_edit_element(page, id_elem, cms)
             if not data:
-                return 'brak danych'
+                return render_template('error/error.html', error_code='',
+                                       error_description='Element, który próbujesz edytować nie istnieje',
+                                       link=request.path)
         if mode == 'remove':
             if id_elem:
                 remove_element(id_elem, page, cms)
@@ -82,7 +84,9 @@ def handle_get_request(request_args, page):
         mode = 'list'
         data = get_list_content(page, cms)
         if not data:
-            return 'brak danych'
+            return render_template('error/error.html', error_code='',
+                                   error_description='Elementy, które próbujesz wyświetlić nie istnieją',
+                                   link=request.path)
 
     return render_template(page_address, page_content=data,
                            sections=cms.get_section_names(), fill_types=cms.get_fill_types(),
@@ -106,14 +110,17 @@ def admin(page):
 
 @app.route('/login', methods=['GET', 'POST', 'OPTIONS'])
 def login():
-    post_data = request.form.to_dict()
-    if post_data.get('form_type') == 'login_form':
-        login_user(post_data)
-        if is_user_logged_in():
-            return redirect('admin/sections')
-        else:
-            return redirect('login')
-    return render_template("admin/login.html")
+    if is_user_logged_in():
+        return redirect('admin/sections')
+    else:
+        post_data = request.form.to_dict()
+        if post_data.get('form_type') == 'login_form':
+            login_user(post_data)
+            if is_user_logged_in():
+                return redirect('admin/sections')
+            else:
+                return redirect('login')
+        return render_template("admin/login.html")
 
 
 @app.route("/", methods=['POST', 'GET', 'OPTIONS'])
@@ -148,7 +155,9 @@ def get_slider_images():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return 'error: Not found', 404
+    link = request.root_url
+    return render_template('error/error.html', error_code='404',
+                           error_description='Nie znaleziono wybranej przez ciebie strony', link=link), 404
 
 
 if __name__ == '__main__':

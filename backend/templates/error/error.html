@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wystąpił błąd</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static', filename='/main/error.css')}}" rel="stylesheet">
+</head>
+<body class="error-body">
+
+<div class="error">
+    <div class="row">
+        <img class="img-background" src="{{url_for('static', filename='main/assets/k2.jpg')}}" alt="kalafior">
+        <h2 class="error-code"><span>Błąd</span><span class="code">{{error_code}}</span></h2>
+    </div>
+    <p class="error-description">{{error_description}}</p>
+</div>
+<a href="{{link}}" class="link">powrót do poprzedniej strony &lt;&lt;</a>
+</body>
+</html>
