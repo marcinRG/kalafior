@@ -1,8 +1,10 @@
 import os
 
+from flask_bcrypt import Bcrypt
 from utils.find_index_in_dict_list import find_index_in_dict_list
 from utils.read_data_from_file import read_data_from_file
 from utils.write_data_to_file import write_data_to_file
+
 
 
 class CMS:
@@ -10,15 +12,20 @@ class CMS:
     __admin_name = 'admin'
 
     def __init__(self, main_dir, admin_file, cms_settings_file):
+        self.__bcrypt = Bcrypt()
         if os.path.exists(main_dir):
             self.main_dir = main_dir
             self.__initialize_data_from_file(self.__admin_name, self.main_dir, admin_file)
             self.__initialize_data_from_file(self.__settings_name, self.main_dir, cms_settings_file)
 
     def login(self, user_data):
+        print('cms login')
+        print(user_data)
+
         if user_data.get('login') and user_data.get('password'):
             admin = self.__get_admin()
-            if admin.get('login') == user_data.get('login') and (user_data.get('password') == admin.get('password')):
+            if admin.get('login') == user_data.get('login') and (self.__bcrypt.check_password_hash(
+                    admin.get('password'), user_data.get('password'))):
                 return {
                     'logged': True,
                     'user': admin.get('login')

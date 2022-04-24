@@ -4,7 +4,7 @@ import {MainSlider} from './js/main-slider/MainSlider';
 import {AnimatedLetter} from './js/animated-letter/AnimatedLetter';
 import {loadImages} from './js/images/background-images';
 import {UpArrows} from './js/UpArrows/UpArrows';
-import {TagSelector} from "./js/tag-selector/TagSelector";
+import {TagSelector} from './js/tag-selector/TagSelector';
 
 const loadMessage = document.querySelector('.loading-screen .loading-msg');
 const loadScreen = document.querySelector('.loading-screen');

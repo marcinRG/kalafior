@@ -21,5 +21,17 @@
             "javascript"
         ],
         "image": "kubus.jpg"
+    },
+    {
+        "id": "main_page",
+        "name": "strona g\u0142\u00f3wna",
+        "link": "http://kalafior.site/",
+        "description": "Projekt tej strony. Zawiera bardzo prosty plikowy CMS.",
+        "tags": [
+            "HTML",
+            "Flask",
+            "javascript"
+        ],
+        "image": "strona.jpg"
     }
 ]

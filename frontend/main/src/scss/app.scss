@@ -41,7 +41,7 @@
   left: $menu-width-small;
 
   @media screen {
-    @media (min-width: $media-br-2) {
+    @media (min-width: $media-br-1) {
 
       left: $menu-width;
     }

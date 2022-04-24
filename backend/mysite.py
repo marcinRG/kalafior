@@ -31,7 +31,7 @@ cms = CMS(os.getcwd(), cms_admin, cms_settings_file)
 
 def login_user(user_data):
     is_logged_in = cms.login(user_data)
-    if is_logged_in.get('logged') is True:
+    if is_logged_in is not None and is_logged_in.get('logged') and is_logged_in.get('logged') is True:
         session['login'] = is_logged_in.get('user')
         session['logged_in'] = is_logged_in.get('logged')
 
@@ -114,9 +114,10 @@ def login():
         return redirect('admin/sections')
     else:
         post_data = request.form.to_dict()
+        print(post_data)
         if post_data.get('form_type') == 'login_form':
             login_user(post_data)
-            if is_user_logged_in():
+            if is_user_logged_in() is not None:
                 return redirect('admin/sections')
             else:
                 return redirect('login')
