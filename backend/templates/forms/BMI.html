@@ -1,0 +1,47 @@
+{% extends "forms/base.html" %}
+{% import 'forms/macros.html' as macros %}
+{% from 'bootstrap5/form.html' import render_field %}
+{% block title %} Obliczanie współczynnika BMI {% endblock %}
+
+
+{% block form_content %}
+
+<div class="container">
+
+    {% if form:%}
+
+    <h3 class="my-3">Obliczanie współczynnika BMI</h3>
+    <form class="card" novalidate method="post" action="/forms/BMI">
+        <p class="card-header">Obliczanie BMI</p>
+        <div class="card-body">
+
+            {{ form.csrf_token }}
+            {{ render_field(form.height)}}
+            {{ render_field(form.weight)}}
+
+        </div>
+        <div class="card-footer">
+            <div class="d-flex p-3 flex-row-reverse">
+                <input type="submit" class="btn btn-dark" value="Oblicz">
+            </div>
+
+        </div>
+    </form>
+
+    {{macros.create_BMI_msg(results)}}
+
+    {% else%}
+
+    <div class="alert alert-danger mt-5" role="alert">
+        <h4 class="alert-heading">Coś poszło źle!</h4>
+        <hr>
+        <p>Forma nie istnieje!!!</p>
+    </div>
+
+    {% endif%}
+
+
+</div>
+
+{% endblock %}
+

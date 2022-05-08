@@ -1,0 +1,71 @@
+{% extends "forms/base.html" %}
+{% from 'bootstrap5/form.html' import render_field %}
+{% block title %} Konwersja miar {% endblock %}
+
+{% block form_content %}
+
+<div class="container">
+    <h3 class="my-3">Konwersja miar</h3>
+
+    <form class="card" novalidate method="post" action="/forms/measures">
+        <p class="card-header">Konwersja między różnymi jednostami miary</p>
+        <div class="card-body">
+            {{form.csrf_token}}
+
+            <div class="row my-4">
+                <div class="col">
+                    {{render_field(form.measurement_quantity)}}
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col">
+                    {{ render_field(form.measurement_select) }}
+                </div>
+            </div>
+
+            <div class="row my-4 length">
+                <div class="col">
+                    {{render_field(form.measures_length_input)}}
+                </div>
+
+                <div class="col">
+                    {{render_field(form.measures_length_output)}}
+                </div>
+
+            </div>
+
+
+            <div class="row my-4 mass">
+                <div class="col">
+                    {{render_field(form.measures_mass_input)}}
+                </div>
+                <div class="col">
+                    {{render_field(form.measures_mass_output)}}
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col">
+                    <div class="d-flex flex-row-reverse">
+                        <input type="submit" class="btn btn-primary px-5" value="Przelicz">
+                    </div>
+                </div>
+            </div>
+
+
+    </form>
+
+    {% if results: %}
+    <div class="alert alert-light mt-5 border border-1" role="alert">
+        <h4 class="alert-heading">Oliczona wartość to: <span
+                class="fw-bold">{{'{0:0.4f}'.format(results['output'])}}</span> </h4>
+        <hr>
+        <p>Przeliczono z: {{results['input_unit']}} do {{results['output_unit']}}</p>
+    </div>
+    {% endif%}
+
+
+</div>
+
+{% endblock %}

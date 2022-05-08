@@ -18,7 +18,7 @@
     <form action="/admin/sections" method="post" class="app-form login">
         <p class="form-title">Edycja/dodawanie nowej sekcji</p>
         <div class="form-inside-container">
-
+            <input id="csrf_token" name="csrf_token" type="hidden" value="{{csrf_token()}}">
             <input type="hidden" value="sections_form" id="sections_form" name="form_type" style="display: none">
             <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id sekcji:</label>

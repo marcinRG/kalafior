@@ -16,7 +16,7 @@
     <form action="/admin/games" method="post" class="app-form login">
         <p class="form-title">Edycja/dodawanie nowej gry</p>
         <div class="form-inside-container">
-
+            <input id="csrf_token" name="csrf_token" type="hidden" value="{{csrf_token()}}">
             <input type="hidden" value="games_form" id="games_form" name="form_type" style="display: none">
             <input type="hidden" value="{{mode}}" name="edit_mode" style="display: none">
             <label for="id" class="form-label">Id gry:</label>

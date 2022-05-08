@@ -1,0 +1,85 @@
+{% extends "forms/base.html" %}
+{% from 'bootstrap5/form.html' import render_field %}
+{% block title %} Wycieczki na majówkę {% endblock %}
+
+{% block form_content %}
+
+<h3 class="my-3">Wycieczki na majówkę</h3>
+
+<div class="my-5">
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Formularz do wypełnienia
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form class="card" novalidate method="post" action="/forms/trip">
+                        <p class="card-header">Formularz majowe wycieczki</p>
+                        <div class="card-body">
+
+                            {{ form.csrf_token }}
+                            {{ render_field(form.trip_direction)}}
+                            {{ render_field(form.trip_description)}}
+                            {{ render_field(form.name)}}
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex p-3 flex-row-reverse">
+                                <input type="submit" class="btn btn-dark" value="Wyślij">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Dane wypełnione przez innych użytkowników
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% if results %}
+                    <table class="table my-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">imię</th>
+                                <th scope="col">dokąd</th>
+                                <th scope="col">opis</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for row in results: %}
+                            <tr>
+                                <th scope="row">{{loop.index}}</th>
+                                <td>{{row['name']}}</td>
+                                <td>{{row['direction']}}</td>
+                                <td>{{row['description']}}</td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% macro create_menu_item(page, selected_page, page_title) -%}
+<li class="nav-item" role="presentation">
+    {% if page == selected_page: %}
+        <a class="nav-link active" href="/forms/{{page}}">{{page_title}}</a>
+    {% else %}
+        <a class="nav-link" href="/forms/{{page}}">{{page_title}}</a>
+    {% endif%}
+
+
+</li>
+{%- endmacro %}
+
+{% macro select_tab(page, selected_page) -%}
+    {% if page == selected_page: %}
+        tab-pane show active
+    {% else %}
+        tab-pane
+    {% endif%}
+{%- endmacro %}
+
+
+{% macro create_BMI_msg(results) -%}
+    {% if results: %}
+        <div class="{{get_msg_color(results['bmi'])}}" role="alert">
+            <h4 class="alert-heading">Twoje BMI to: {{'{0:0.2f}'.format(results['bmi'])}}</h4>
+            <p>{{results['name']}}</p>
+            <hr>
+            <p class="mb-0">{{results['txt']}}</p>
+        </div>
+    {% endif %}
+
+{%- endmacro %}
+
+{% macro get_color() -%}
+      alert alert-primary mt-5
+{%- endmacro %}
+
+
+{% macro get_msg_color(bmi) -%}
+   {% if bmi < 18.5: %}
+      alert alert-primary mt-5
+   {% elif bmi < 25.5:%}
+      alert alert-success mt-5
+   {% elif bmi < 30:%}
+      alert alert-warning mt-5
+   {%else %}
+      alert alert-danger mt-5
+   {% endif %}
+{%- endmacro %}
+

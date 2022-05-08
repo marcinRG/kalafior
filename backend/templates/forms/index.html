@@ -1,0 +1,169 @@
+<!doctype html>
+{% import 'forms/macros.html' as macros %}
+{% from 'bootstrap5/form.html' import render_field %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{ bootstrap.load_css() }}
+    <title>Document</title>
+</head>
+<body>
+<header class="container">
+    <h1 class="display-1 my-3">WTF-Formy</h1>
+</header>
+
+<div class="container">
+
+    <form action="/forms" method="post" novalidate>
+        {{ bmi_form.csrf_token }}
+        {{ render_field(bmi_form.height)}}
+        {{ render_field(bmi_form.weight)}}
+        <input type="submit" class="btn btn-dark" value="Wyślij">
+    </form>
+
+</div>
+
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        {{macros.create_menu_item('description', page, 'Opis')}}
+        {{macros.create_menu_item('BMI', page, 'Współczynnik BMI')}}
+        {{macros.create_menu_item('measures', page, 'Konwersja miar')}}
+        {{macros.create_menu_item('trip', page, 'Majówka - wycieczki')}}
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="{{macros.select_tab('description', page)}}">
+            <h3 class="my-3">Demonstracja różnych form i biblioteki WTF-Forms</h3>
+        </div>
+
+        <div class="{{macros.select_tab('BMI', page)}}">
+            <h3 class="my-3">Obliczanie współczynnika BMI</h3>
+
+            <h1>Forma start</h1>
+
+            <h1>Forma end</h1>
+
+            <form class="card" novalidate>
+                <p class="card-header">Obliczanie BMI</p>
+                <div class="card-body">
+
+                    <label for="height" class="form-label">Podaj wzrost:</label>
+                    <input type="number" class="form-control is-valid" id="height" name="height"
+                           aria-describedby="invalid-height">
+                    <div class="invalid-feedback" id="invalid-height">
+                        Nieprawidłowo podany wzrost
+                    </div>
+                    <div class="valid-feedback">
+                        Wszystko w porządku!
+                    </div>
+                    <label for="weight" class="form-label">Podaj wagę:</label>
+                    <input type="number" class="form-control is-invalid" id="weight" name="weight"
+                           aria-describedby="invalid-weight">
+                    <div class="invalid-feedback" id="invalid-weight">
+                        Nieprawidłowo podana waga
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex p-3 flex-row-reverse">
+                        <button class="btn btn-dark">Wyślij</button>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="alert alert-success mt-5" role="alert">
+                <h4 class="alert-heading">Dobra robota!</h4>
+                <p>Twoje BMI jest w normie.</p>
+                <hr>
+                <p class="mb-0">Trzymaj tak dalej.</p>
+            </div>
+
+            <div class="alert alert-warning mt-5" role="alert">
+                <h4 class="alert-heading">Dobra robota!</h4>
+                <p>Twoje BMI jest w normie.</p>
+                <hr>
+                <p class="mb-0">Trzymaj tak dalej.</p>
+            </div>
+
+            <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Dobra robota!</h4>
+                <p>Twoje BMI jest w normie.</p>
+                <hr>
+                <p class="mb-0">Trzymaj tak dalej.</p>
+            </div>
+        </div>
+
+        <div class="{{macros.select_tab('measures', page)}}">
+            <h3 class="my-3">Obliczanie współczynnika BMI</h3>
+
+            <form class="card" novalidate>
+                <p class="card-header">Konwersja między różnymi jednostami miary</p>
+                <div class="card-body">
+
+                    <div class="row my-4">
+                        <div class="col">
+                            <label for="quantity" class="form-label">Podaj ilość:</label>
+                            <input type="number" class="form-control is-valid" id="quantity" name="quantity">
+                            <div class="invalid-feedback" id="invalid-quantity">
+                                Nieprawidłowo podany wzrost
+                            </div>
+                            <div class="valid-feedback">
+                                Wszystko w porządku!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-4">
+
+                        <div class="col">
+                            <label for="input-select" class="form-label">Podaj wzrost:</label>
+                            <select class="form-select" id="input-select">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label for="output-select" class="form-label">Podaj wzrost:</label>
+                            <select class="form-select" id="output-select">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col">
+                            <div class="d-flex flex-row-reverse">
+                                <button class="btn btn-primary px-5">Wyślij</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+
+            <div class="alert alert-light mt-5 border border-1" role="alert">
+                <h4 class="alert-heading">Dobra robota!</h4>
+                <p>Twoje BMI jest w normie.</p>
+                <hr>
+                <p class="mb-0">Trzymaj tak dalej.</p>
+            </div>
+        </div>
+
+
+    </div>
+    {{ bootstrap.load_js() }}
+</body>
+</html>

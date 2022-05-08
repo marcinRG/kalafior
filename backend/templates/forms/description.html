@@ -1,0 +1,18 @@
+{% extends "forms/base.html" %}
+{% block title %} WTFormy opis {% endblock %}
+
+{% block form_content %}
+<div class="container">
+    <h3 class="my-3">Demonstracja różnych form i biblioteki WTF-Forms</h3>
+    <div class="m-3">
+        <p>Demostracja wykorzystania biblioteki WTForms. Do ostylowania strony wykorzystano bibliotekę bootstrap.</p>
+        <ul>
+            <li>Strona zawiera wskaźnik masy ciała BMI</li>
+            <li>Prosta forma pozwalająca przeliczyć różne jedostki długości i masy</li>
+            <li>Forma zbierająca opinię użytkowników o kierunku majowej wycieczki. Oprócz formy, jest lista z opiniami.
+                Dane przechowywane są w bazie danych sqlite.
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

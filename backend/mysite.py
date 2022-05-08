@@ -1,7 +1,10 @@
 import os
 
 from flask import Flask, render_template, request, redirect, session, jsonify
+from flask_bootstrap import Bootstrap5
+from flask_wtf import CSRFProtect
 
+from blueprints.forms_tests import test_forms
 from blueprints.main_routes import main_routes
 from blueprints.pass_generator import password_generator
 from blueprints.test_file import test_app
@@ -12,9 +15,13 @@ from cms.cms_settings_file import cms_admin
 from utils.admin_page_functions import handle_post_request, get_page_address, get_list_content, \
     get_content_edit_element, remove_element
 from utils.crossdomain import crossdomain
+from utils.form_blueprint_classes import BMIForm
 from utils.request_functions import allowed_file
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
+bootstrap = Bootstrap5(app)
+
 app.secret_key = 'NFcT&jCOn#ekRB~qyh9gSAso*l2+pXYUwDHt!PI5'
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'svg']
@@ -24,6 +31,7 @@ app.config['UPLOAD_FOLDER'] = cms_images_folder
 app.register_blueprint(kubus)
 app.register_blueprint(password_generator)
 app.register_blueprint(main_routes)
+app.register_blueprint(test_forms)
 app.register_blueprint(test_app)
 
 cms = CMS(os.getcwd(), cms_admin, cms_settings_file)
@@ -101,11 +109,17 @@ def admin(page):
         post_request = request.form.to_dict()
         request_files = request.files
         if request.method == 'POST':
-            handle_post_request(post_request, request_files, page, cms, ALLOWED_EXTENSIONS, app.config['UPLOAD_FOLDER'])
+            handle_post_request(post_request, request_files, page,
+                                cms, ALLOWED_EXTENSIONS, app.config['UPLOAD_FOLDER'])
             return redirect('/admin/' + page)
         return handle_get_request(get_request, page)
     else:
         return redirect('/login')
+
+
+@app.route("/admin")
+def admin_no_route():
+    return redirect('/login')
 
 
 @app.route('/login', methods=['GET', 'POST', 'OPTIONS'])
@@ -126,7 +140,8 @@ def login():
 
 @app.route("/", methods=['POST', 'GET', 'OPTIONS'])
 def main():
-    menu_items = [element for element in cms.get_page_sections() if element.get('show_on_menu') is not None]
+    menu_items = [element for element in cms.get_page_sections(
+    ) if element.get('show_on_menu') is not None]
     games = cms.get_games_projects()
     python_projects = cms.get_python_projects()
     html_parts = cms.get_html_fragments()
@@ -159,6 +174,16 @@ def page_not_found(e):
     link = request.root_url
     return render_template('error/error.html', error_code='404',
                            error_description='Nie znaleziono wybranej przez ciebie strony', link=link), 404
+
+
+@app.route('/test_glowny', methods=['POST', 'GET'])
+def test_glowny():
+    print('handling request')
+    bmi_form = BMIForm()
+    if request.method == 'POST' and bmi_form.validate():
+        print('ok')
+    print(bmi_form.height.errors)
+    return render_template('test.html', form=bmi_form)
 
 
 if __name__ == '__main__':

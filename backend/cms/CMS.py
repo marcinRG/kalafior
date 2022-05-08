@@ -6,7 +6,6 @@ from utils.read_data_from_file import read_data_from_file
 from utils.write_data_to_file import write_data_to_file
 
 
-
 class CMS:
     __settings_name = 'settings'
     __admin_name = 'admin'
@@ -19,8 +18,6 @@ class CMS:
             self.__initialize_data_from_file(self.__settings_name, self.main_dir, cms_settings_file)
 
     def login(self, user_data):
-        print('cms login')
-        print(user_data)
 
         if user_data.get('login') and user_data.get('password'):
             admin = self.__get_admin()

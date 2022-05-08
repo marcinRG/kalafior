@@ -3,6 +3,7 @@
 bower_components
 .vs
 venv
+venv/**/*.*
 cms/admin.json
 ### Node template
 # Logs
