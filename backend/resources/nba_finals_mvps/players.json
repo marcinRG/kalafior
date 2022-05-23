@@ -1,0 +1,253 @@
+{
+    "Jerry_West": {
+        "years": [
+            "1969"
+        ],
+        "name": "Jerry West",
+        "link": "https://pl.wikipedia.org/wiki/Jerry_West"
+    },
+    "Willis_Reed": {
+        "years": [
+            "1970",
+            "1973"
+        ],
+        "name": "Willis Reed",
+        "link": "https://pl.wikipedia.org/wiki/Willis_Reed"
+    },
+    "Lew_Alcindor": {
+        "years": [
+            "1971"
+        ],
+        "name": "Lew Alcindor",
+        "link": "https://pl.wikipedia.org/wiki/Kareem_Abdul-Jabbar"
+    },
+    "Wilt_Chamberlain": {
+        "years": [
+            "1972"
+        ],
+        "name": "Wilt Chamberlain",
+        "link": "https://pl.wikipedia.org/wiki/Wilt_Chamberlain"
+    },
+    "John_Havlicek": {
+        "years": [
+            "1974"
+        ],
+        "name": "John Havlicek",
+        "link": "https://pl.wikipedia.org/wiki/John_Havlicek"
+    },
+    "Rick_Barry": {
+        "years": [
+            "1975"
+        ],
+        "name": "Rick Barry",
+        "link": "https://pl.wikipedia.org/wiki/Rick_Barry"
+    },
+    "Jo_Jo_White": {
+        "years": [
+            "1976"
+        ],
+        "name": "Jo Jo White",
+        "link": "https://pl.wikipedia.org/wiki/Jo_Jo_White"
+    },
+    "Bill_Walton": {
+        "years": [
+            "1977"
+        ],
+        "name": "Bill Walton",
+        "link": "https://pl.wikipedia.org/wiki/Bill_Walton"
+    },
+    "Wes_Unseld": {
+        "years": [
+            "1978"
+        ],
+        "name": "Wes Unseld",
+        "link": "https://pl.wikipedia.org/wiki/Wes_Unseld"
+    },
+    "Dennis_Johnson": {
+        "years": [
+            "1979"
+        ],
+        "name": "Dennis Johnson",
+        "link": "https://pl.wikipedia.org/wiki/Dennis_Johnson"
+    },
+    "Magic_Johnson": {
+        "years": [
+            "1980",
+            "1982",
+            "1987"
+        ],
+        "name": "Magic Johnson",
+        "link": "https://pl.wikipedia.org/wiki/Magic_Johnson"
+    },
+    "Cedric_Maxwell": {
+        "years": [
+            "1981"
+        ],
+        "name": "Cedric Maxwell",
+        "link": "https://pl.wikipedia.org/wiki/Cedric_Maxwell"
+    },
+    "Moses_Malone": {
+        "years": [
+            "1983"
+        ],
+        "name": "Moses Malone",
+        "link": "https://pl.wikipedia.org/wiki/Moses_Malone"
+    },
+    "Larry_Bird": {
+        "years": [
+            "1984",
+            "1986"
+        ],
+        "name": "Larry Bird",
+        "link": "https://pl.wikipedia.org/wiki/Larry_Bird"
+    },
+    "Kareem_Abdul-Jabbar": {
+        "years": [
+            "1985"
+        ],
+        "name": "Kareem Abdul-Jabbar",
+        "link": "https://pl.wikipedia.org/wiki/Kareem_Abdul-Jabbar"
+    },
+    "James_Worthy": {
+        "years": [
+            "1988"
+        ],
+        "name": "James Worthy",
+        "link": "https://pl.wikipedia.org/wiki/James_Worthy"
+    },
+    "Joe_Dumars": {
+        "years": [
+            "1989"
+        ],
+        "name": "Joe Dumars",
+        "link": "https://pl.wikipedia.org/wiki/Joe_Dumars"
+    },
+    "Isiah_Thomas": {
+        "years": [
+            "1990"
+        ],
+        "name": "Isiah Thomas",
+        "link": "https://pl.wikipedia.org/wiki/Isiah_Thomas"
+    },
+    "Michael_Jordan": {
+        "years": [
+            "1991",
+            "1992",
+            "1993",
+            "1996",
+            "1997",
+            "1998"
+        ],
+        "name": "Michael Jordan",
+        "link": "https://pl.wikipedia.org/wiki/Michael_Jordan"
+    },
+    "Hakeem_Olajuwon": {
+        "years": [
+            "1994",
+            "1995"
+        ],
+        "name": "Hakeem Olajuwon",
+        "link": "https://pl.wikipedia.org/wiki/Hakeem_Olajuwon"
+    },
+    "Tim_Duncan": {
+        "years": [
+            "1999",
+            "2003",
+            "2005"
+        ],
+        "name": "Tim Duncan",
+        "link": "https://pl.wikipedia.org/wiki/Tim_Duncan"
+    },
+    "Shaquille_O\u2019Neal": {
+        "years": [
+            "2000",
+            "2001",
+            "2002"
+        ],
+        "name": "Shaquille O\u2019Neal",
+        "link": "https://pl.wikipedia.org/wiki/Shaquille_O%E2%80%99Neal"
+    },
+    "Chauncey_Billups": {
+        "years": [
+            "2004"
+        ],
+        "name": "Chauncey Billups",
+        "link": "https://pl.wikipedia.org/wiki/Chauncey_Billups"
+    },
+    "Dwyane_Wade": {
+        "years": [
+            "2006"
+        ],
+        "name": "Dwyane Wade",
+        "link": "https://pl.wikipedia.org/wiki/Dwyane_Wade"
+    },
+    "Tony_Parker": {
+        "years": [
+            "2007"
+        ],
+        "name": "Tony Parker",
+        "link": "https://pl.wikipedia.org/wiki/Tony_Parker"
+    },
+    "Paul_Pierce": {
+        "years": [
+            "2008"
+        ],
+        "name": "Paul Pierce",
+        "link": "https://pl.wikipedia.org/wiki/Paul_Pierce"
+    },
+    "Kobe_Bryant": {
+        "years": [
+            "2009",
+            "2010"
+        ],
+        "name": "Kobe Bryant",
+        "link": "https://pl.wikipedia.org/wiki/Kobe_Bryant"
+    },
+    "Dirk_Nowitzki": {
+        "years": [
+            "2011"
+        ],
+        "name": "Dirk Nowitzki",
+        "link": "https://pl.wikipedia.org/wiki/Dirk_Nowitzki"
+    },
+    "LeBron_James": {
+        "years": [
+            "2012",
+            "2013",
+            "2016",
+            "2020"
+        ],
+        "name": "LeBron James",
+        "link": "https://pl.wikipedia.org/wiki/LeBron_James"
+    },
+    "Kawhi_Leonard": {
+        "years": [
+            "2014",
+            "2019"
+        ],
+        "name": "Kawhi Leonard",
+        "link": "https://pl.wikipedia.org/wiki/Kawhi_Leonard"
+    },
+    "Andre_Iguodala": {
+        "years": [
+            "2015"
+        ],
+        "name": "Andre Iguodala",
+        "link": "https://pl.wikipedia.org/wiki/Andre_Iguodala"
+    },
+    "Kevin_Durant": {
+        "years": [
+            "2017",
+            "2018"
+        ],
+        "name": "Kevin Durant",
+        "link": "https://pl.wikipedia.org/wiki/Kevin_Durant"
+    },
+    "Janis_Andetokunmbo": {
+        "years": [
+            "2021"
+        ],
+        "name": "Janis Andetokunmbo",
+        "link": "https://pl.wikipedia.org/wiki/Janis_Andetokunmbo"
+    }
+}
