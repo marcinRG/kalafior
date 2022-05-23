@@ -7,15 +7,15 @@ from flask_wtf import CSRFProtect
 from blueprints.forms_tests import test_forms
 from blueprints.main_routes import main_routes
 from blueprints.pass_generator import password_generator
-from blueprints.test_file import test_app
+from blueprints.nba_finals import nba_finals_mvps
 from blueprints.winnie_the_pooh import kubus
 from cms.CMS import CMS
 from cms.cms_settings_file import cms_settings_file, cms_images_folder
 from cms.cms_settings_file import cms_admin
-from utils.admin_page_functions import handle_post_request, get_page_address, get_list_content, \
-    get_content_edit_element, remove_element
+from utils.admin_page_functions import handle_post_request, get_page_address, get_list_content
+from utils.admin_page_functions import get_content_edit_element, remove_element
+
 from utils.crossdomain import crossdomain
-from utils.form_blueprint_classes import BMIForm
 from utils.request_functions import allowed_file
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ app.register_blueprint(kubus)
 app.register_blueprint(password_generator)
 app.register_blueprint(main_routes)
 app.register_blueprint(test_forms)
-app.register_blueprint(test_app)
+app.register_blueprint(nba_finals_mvps)
 
 cms = CMS(os.getcwd(), cms_admin, cms_settings_file)
 
@@ -128,7 +128,6 @@ def login():
         return redirect('admin/sections')
     else:
         post_data = request.form.to_dict()
-        print(post_data)
         if post_data.get('form_type') == 'login_form':
             login_user(post_data)
             if is_user_logged_in() is not None:
@@ -174,16 +173,6 @@ def page_not_found(e):
     link = request.root_url
     return render_template('error/error.html', error_code='404',
                            error_description='Nie znaleziono wybranej przez ciebie strony', link=link), 404
-
-
-@app.route('/test_glowny', methods=['POST', 'GET'])
-def test_glowny():
-    print('handling request')
-    bmi_form = BMIForm()
-    if request.method == 'POST' and bmi_form.validate():
-        print('ok')
-    print(bmi_form.height.errors)
-    return render_template('test.html', form=bmi_form)
 
 
 if __name__ == '__main__':

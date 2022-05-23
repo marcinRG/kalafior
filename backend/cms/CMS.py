@@ -104,7 +104,6 @@ class CMS:
         self.__edit_element('python', id_project, new_value)
 
     def remove_project(self, id_project):
-        print('remove project')
         self.__remove_element('python', id_project)
 
     def get_python_project(self, id_project):

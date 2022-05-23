@@ -3,8 +3,8 @@
 bower_components
 .vs
 venv
-venv/**/*.*
 cms/admin.json
+__pycache__
 ### Node template
 # Logs
 logs
